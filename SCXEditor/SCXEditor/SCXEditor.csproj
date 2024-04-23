@@ -8,11 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="NewChartsetMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
