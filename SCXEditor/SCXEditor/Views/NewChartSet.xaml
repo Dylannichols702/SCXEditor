@@ -1,0 +1,25 @@
+﻿<Window x:Class="SCXEditor.NewChartSet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCXEditor"
+        mc:Ignorable="d"
+        Title="New Chartset" Height="200" Width="200">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock>Song Title:</TextBlock>
+            <TextBox Name="songTitle" Width="100"/>
+            <TextBlock>Song Artist:</TextBlock>
+            <TextBox Name="songArtist" Width="100"/>
+            <TextBlock>Chart Set Album Directory</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="chartSetPath" Width="100"/>
+                <Button Name="chartSetPathSelect">
+                    Select Path
+                </Button>
+            </StackPanel>
+            <Button Name="newChartsetNextButton" Width="100">Next</Button>
+        </StackPanel>
+    </Grid>
+</Window>

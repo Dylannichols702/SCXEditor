@@ -17,18 +17,11 @@ namespace SCXEditor
     /// <summary>
     /// Interaction logic for NewChartsetMenu.xaml
     /// </summary>
-    public partial class NewChartsetMenu : Window
+    public partial class NewChartSet : Window
     {
-        public NewChartsetMenu()
+        public NewChartSet()
         {
             InitializeComponent();
-        }
-
-        private void newChartsetNextButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            NewChartMenu newChartMenu = new NewChartMenu();
-            newChartMenu.Show();
         }
     }
 }
