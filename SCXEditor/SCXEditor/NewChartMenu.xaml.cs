@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SCXEditor
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for NewChartMenu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NewChartMenu : Window
     {
-        public MainWindow()
+        public NewChartMenu()
         {
             InitializeComponent();
-        }
-
-        private void NewChartset_Click(object sender, RoutedEventArgs e)
-        {
-            NewChartsetMenu newChartsetMenu = new NewChartsetMenu();
-            newChartsetMenu.Show();
         }
     }
 }

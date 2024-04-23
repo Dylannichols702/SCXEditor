@@ -10,12 +10,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
-                    <MenuItem Header="New Chartset"/>
+                    <MenuItem Header="New Chartset" Click="NewChartset_Click"/>
                     <MenuItem Header="Open Chartset"/>
                     <MenuItem Header="New Chart"/>
                     <MenuItem Header="Load Chart"/>
