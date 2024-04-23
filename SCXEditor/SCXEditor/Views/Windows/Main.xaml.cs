@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCXEditor.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -19,17 +20,13 @@ namespace SCXEditor
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Main : Window
     {
-        public MainWindow()
+        public Main()
         {
             InitializeComponent();
-        }
-
-        private void NewChartset_Click(object sender, RoutedEventArgs e)
-        {
-            NewChartsetMenu newChartsetMenu = new NewChartsetMenu();
-            newChartsetMenu.Show();
+            MainViewModel mainViewModel = new MainViewModel();
+            this.DataContext = mainViewModel;
         }
     }
 }
