@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Views\NewChartSet.xaml.cs">
+    <Compile Update="Views\Windows\NewChartSet.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Views\NewChartSet.xaml">
+    <Page Update="Views\Windows\NewChartSet.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

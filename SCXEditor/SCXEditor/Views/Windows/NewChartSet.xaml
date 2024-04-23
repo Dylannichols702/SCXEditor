@@ -5,21 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SCXEditor"
         mc:Ignorable="d"
-        Title="New Chartset" Height="200" Width="200">
+        Title="New Chart Set" Height="400" Width="200">
     <Grid>
         <StackPanel HorizontalAlignment="Center">
+            <TextBlock FontSize="18px" FontWeight="Bold">Create Chart Set</TextBlock>
             <TextBlock>Song Title:</TextBlock>
-            <TextBox Name="songTitle" Width="100"/>
+            <TextBox Name="songTitle"/>
             <TextBlock>Song Artist:</TextBlock>
-            <TextBox Name="songArtist" Width="100"/>
-            <TextBlock>Chart Set Album Directory</TextBlock>
+            <TextBox Name="songArtist"/>
+            <TextBlock>Chart Set Album Directory:</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox Name="chartSetPath" Width="100"/>
                 <Button Name="chartSetPathSelect">
                     Select Path
                 </Button>
             </StackPanel>
-            <Button Name="newChartsetNextButton" Width="100">Next</Button>
+            <TextBlock FontSize="18px" FontWeight="Bold">Create Chart</TextBlock>
+            <TextBlock>Chart Difficulty:</TextBlock>
+            <ComboBox/>
+            <TextBlock>Chart Level:</TextBlock>
+            <TextBox Name="diffLevel"></TextBox>
+            <Button Width="75px">Create</Button>
         </StackPanel>
     </Grid>
 </Window>

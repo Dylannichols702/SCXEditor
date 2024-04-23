@@ -11,13 +11,10 @@ namespace SCXEditor.ViewModels
 {
     internal class MainViewModel
     {
-        public ChartSet ChartSet { get; set; }
 
         public ICommand ShowNewChartSetWindowCommand { get; set; }
 
         public MainViewModel() { 
-            ChartSet =  ChartSetManager.GetActiveChartSet();
-
             ShowNewChartSetWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
         }
 
