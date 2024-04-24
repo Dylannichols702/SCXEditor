@@ -17,7 +17,7 @@
                     <MenuItem Header="New Chart Set" Command="{Binding ShowNewChartSetWindowCommand}"/>
                     <MenuItem Header="Open Chart Set"/>
                     <MenuItem Header="New Chart" Command="{Binding ShowNewChartWindowCommand}"/>
-                    <MenuItem Header="Load Chart"/>
+                    <MenuItem Header="Load Chart" Command="{Binding ShowLoadChartWindowCommand}"/>
                     <MenuItem Header="Save"/>
                 </MenuItem>
                 <MenuItem Header="Edit">

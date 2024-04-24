@@ -23,10 +23,9 @@ namespace SCXEditor.ViewModels
             return true;
         }
 
-        // TODO: Add logic for creating a new chart set
         private void CreateChartSet(object obj)
         {
-            MessageBox.Show("lol");
+            // TODO: Add logic for creating a new chart set
         }
     }
 }

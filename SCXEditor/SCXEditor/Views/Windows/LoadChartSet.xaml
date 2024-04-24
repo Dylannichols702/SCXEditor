@@ -1,0 +1,20 @@
+﻿<Window x:Class="SCXEditor.Views.Windows.LoadChartSet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SCXEditor.Views.Windows"
+        mc:Ignorable="d"
+        Title="Load Chart Set" Height="400" Width="200">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock FontSize="18px" FontWeight="Bold">Load Chart Set</TextBlock>
+            <TextBlock>Chart Set Directory:</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox IsReadOnly="True" Width="100px"></TextBox>
+                <Button>Select</Button>
+            </StackPanel>
+            <Button Width="75px">Load</Button>
+        </StackPanel>
+    </Grid>
+</Window>

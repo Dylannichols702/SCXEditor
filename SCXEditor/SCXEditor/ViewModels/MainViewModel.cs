@@ -15,18 +15,31 @@ namespace SCXEditor.ViewModels
 
         public ICommand ShowNewChartSetWindowCommand { get; set; }
         public ICommand ShowNewChartWindowCommand { get; set; }
+        public ICommand ShowLoadChartWindowCommand { get; set; }
 
         public MainViewModel() { 
             ShowNewChartSetWindowCommand = new RelayCommand(ShowChartSetWindow, CanShowChartSetWindow);
-            ShowNewChartWindowCommand = new RelayCommand(ShowChartWindow, CanShowChartWindow);
+            ShowNewChartWindowCommand = new RelayCommand(ShowNewChartWindow, CanShowNewChartWindow);
+            ShowLoadChartWindowCommand = new RelayCommand(ShowLoadChartWindow, CanShowLoadChartWindow);
         }
 
-        private bool CanShowChartWindow(object obj)
+        private bool CanShowLoadChartWindow(object obj)
         {
             return true;
         }
 
-        private void ShowChartWindow(object obj)
+        private void ShowLoadChartWindow(object obj)
+        {
+            LoadChart loadChartWin = new LoadChart();
+            loadChartWin.Show();
+        }
+
+        private bool CanShowNewChartWindow(object obj)
+        {
+            return true;
+        }
+
+        private void ShowNewChartWindow(object obj)
         {
             NewChart newChartWin = new NewChart();
             newChartWin.Show();
