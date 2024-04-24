@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Record_Book_MVVM.Commands
+namespace SCXEditor.Commands
 {
 	public class RelayCommand : ICommand
 	{

@@ -21,7 +21,7 @@
                     Select Path
                 </Button>
             </StackPanel>
-            <Button Width="75px">Create</Button>
+            <Button Width="75px" Command="{ Binding CreateChartSetCommand }">Create</Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SCXEditor.ViewModels;
 
 namespace SCXEditor
 {
@@ -22,6 +23,7 @@ namespace SCXEditor
         public NewChartSet()
         {
             InitializeComponent();
+            this.DataContext = new NewChartSetViewModel();
         }
     }
 }

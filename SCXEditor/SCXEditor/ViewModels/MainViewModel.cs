@@ -1,4 +1,4 @@
-﻿using Record_Book_MVVM.Commands;
+﻿using SCXEditor.Commands;
 using SCXEditor.Models;
 using SCXEditor.Views.Windows;
 using System;
