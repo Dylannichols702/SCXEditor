@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SCXEditor"
         mc:Ignorable="d"
-        Title="New Chart Set" Height="400" Width="200">
+        Title="New Chart Set" Height="400" Width="200"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel HorizontalAlignment="Center">
             <TextBlock FontSize="18px" FontWeight="Bold">Create Chart Set</TextBlock>
@@ -20,11 +21,6 @@
                     Select Path
                 </Button>
             </StackPanel>
-            <TextBlock FontSize="18px" FontWeight="Bold">Create Chart</TextBlock>
-            <TextBlock>Chart Difficulty:</TextBlock>
-            <ComboBox/>
-            <TextBlock>Chart Level:</TextBlock>
-            <TextBox Name="diffLevel"></TextBox>
             <Button Width="75px">Create</Button>
         </StackPanel>
     </Grid>
