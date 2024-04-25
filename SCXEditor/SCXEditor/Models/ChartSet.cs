@@ -11,10 +11,6 @@ namespace SCXEditor.Models
     {
         public ChartSet() { }
 
-        public string? MusicTitle { get; set; } 
-        public string? MusicArtist { get; set; }
-        public string? MusicAudioPath { get; set; }
-
-        public ObservableCollection<Chart> Charts { get; set;}
+        public string ChartSetDirectory;
     }
 }

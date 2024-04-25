@@ -8,11 +8,7 @@ namespace SCXEditor.Models
 {
     public class ChartSetManager
     {
-        public static ChartSet _ActiveChartSet = new ChartSet() {
-            MusicTitle = "Test",
-            MusicArtist = "Test Artist",
-            MusicAudioPath = "/test/path/"
-        };
+        public static ChartSet _ActiveChartSet = new ChartSet();
 
         public static ChartSet GetActiveChartSet()
         {
