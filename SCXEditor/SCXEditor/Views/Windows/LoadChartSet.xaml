@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SCXEditor.Views.Windows"
         mc:Ignorable="d"
-        Title="Load Chart Set" Height="400" Width="200">
+        Title="Load Chart Set" Height="400" Width="200"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel HorizontalAlignment="Center">
             <TextBlock FontSize="18px" FontWeight="Bold">Load Chart Set</TextBlock>
