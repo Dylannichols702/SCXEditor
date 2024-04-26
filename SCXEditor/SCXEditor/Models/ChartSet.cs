@@ -11,6 +11,6 @@ namespace SCXEditor.Models
     {
         public ChartSet() { }
 
-        public string ChartSetDirectory;
+        public string ChartSetDirectory { get; set; }
     }
 }

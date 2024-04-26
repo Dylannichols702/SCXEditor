@@ -1,4 +1,5 @@
 ﻿<Window x:Class="SCXEditor.NewChartSet"
+        x:Name="NewChartSetWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,14 +12,13 @@
         <StackPanel HorizontalAlignment="Center">
             <TextBlock FontSize="18px" FontWeight="Bold">Create Chart Set</TextBlock>
             <TextBlock>Song Title:</TextBlock>
-            <TextBox Name="songTitle"/>
+            <TextBox Name="songTitle" Text="{Binding SongTitle}"/>
             <TextBlock>Song Artist:</TextBlock>
-            <TextBox Name="songArtist"/>
+            <TextBox Name="songArtist" Text="{Binding SongArtist}"/>
             <TextBlock>Chart Set Album Directory:</TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Name="chartSetPathSelect" Command="{Binding ShowFolderBrowserCommand}">Select Path</Button>
-            </StackPanel>
-            <Button Width="75px" Command="{Binding CreateChartSetCommand}">Create</Button>
+            <TextBox IsReadOnly="True" Text="{Binding Path=ChartSetDirectory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Name="chartSetPathSelect" Width="75px" Command="{Binding ShowFolderBrowserCommand}">Select Path</Button>
+                <Button Width="75px" Command="{Binding CreateChartSetCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding ElementName=NewChartSetWindow}">Create</Button>
         </StackPanel>
     </Grid>
 </Window>

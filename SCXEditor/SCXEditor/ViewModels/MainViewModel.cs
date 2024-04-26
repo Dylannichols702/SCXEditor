@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace SCXEditor.ViewModels
 {
-    internal class MainViewModel
+    internal class MainViewModel : BaseViewModel
     {
         // TODO: Refactor this logic to only require one ICommand
         public ICommand ShowNewChartSetWindowCommand { get; set; }
