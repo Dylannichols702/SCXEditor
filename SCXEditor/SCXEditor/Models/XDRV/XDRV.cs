@@ -494,7 +494,7 @@ public class XDRV
                 break;
             // Then process all int values
             case "CHART_LEVEL":
-                chartMetadata.ChartLevel = ParseInt(value);
+                chartMetadata.ChartLevel = Math.Clamp(ParseInt(value), -99, 99);
                 break;
             case "CHART_DISPLAY_BPM":
                 chartMetadata.ChartDisplayBPM = ParseInt(value);
