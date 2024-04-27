@@ -129,4 +129,38 @@ public enum XDRVChartModType
     LaneColorGreen = 95,
     LaneColorBlue = 96,
     LaneColorAlpha = 97,
+
+    LaneLeftColorRed = 98,
+    LaneLeftColorGreen = 99,
+    LaneLeftColorBlue = 100,
+    LaneLeftColorAlpha = 101,
+
+    LaneRightColorRed = 102,
+    LaneRightColorGreen = 103,
+    LaneRightColorBlue = 104,
+    LaneRightColorAlpha = 105,
+
+    DriftMoveX = 106,
+    DriftMoveY = 107,
+    DriftMoveZ = 108,
+
+    DriftRotateX = 109,
+    DriftRotateY = 110,
+    DriftRotateZ = 111,
+
+    DriftLeftMoveX = 112,
+    DriftLeftMoveY = 113,
+    DriftLeftMoveZ = 114,
+
+    DriftLeftRotateX = 115,
+    DriftLeftRotateY = 116,
+    DriftLeftRotateZ = 117,
+
+    DriftRightMoveX = 118,
+    DriftRightMoveY = 119,
+    DriftRightMoveZ = 120,
+
+    DriftRightRotateX = 121,
+    DriftRightRotateY = 122,
+    DriftRightRotateZ = 123,
 }

@@ -52,12 +52,20 @@ public class XDRVChartMod
         return value switch
         {
             "speed" => XDRVChartModType.Speed,
+
             "camera_position_x" => XDRVChartModType.CameraPositionX,
             "camera_position_y" => XDRVChartModType.CameraPositionY,
             "camera_position_z" => XDRVChartModType.CameraPositionZ,
             "camera_rotation_x" => XDRVChartModType.CameraRotationX,
             "camera_rotation_y" => XDRVChartModType.CameraRotationY,
             "camera_rotation_z" => XDRVChartModType.CameraRotationZ,
+            // alias
+            "camera_move_x" => XDRVChartModType.CameraPositionX,
+            "camera_move_y" => XDRVChartModType.CameraPositionY,
+            "camera_move_z" => XDRVChartModType.CameraPositionZ,
+            "camera_rotate_x" => XDRVChartModType.CameraRotationX,
+            "camera_rotate_y" => XDRVChartModType.CameraRotationY,
+            "camera_rotate_z" => XDRVChartModType.CameraRotationZ,
 
             "note_move_x" => XDRVChartModType.NoteMoveX,
             "note_move_y" => XDRVChartModType.NoteMoveY,
@@ -164,6 +172,37 @@ public class XDRVChartMod
             "lane_color_green" => XDRVChartModType.LaneColorGreen,
             "lane_color_blue" => XDRVChartModType.LaneColorBlue,
             "lane_color_alpha" => XDRVChartModType.LaneColorAlpha,
+
+            "lane_left_color_red" => XDRVChartModType.LaneLeftColorRed,
+            "lane_left_color_green" => XDRVChartModType.LaneLeftColorGreen,
+            "lane_left_color_blue" => XDRVChartModType.LaneLeftColorBlue,
+            "lane_left_color_alpha" => XDRVChartModType.LaneLeftColorAlpha,
+
+            "lane_right_color_red" => XDRVChartModType.LaneRightColorRed,
+            "lane_right_color_green" => XDRVChartModType.LaneRightColorGreen,
+            "lane_right_color_blue" => XDRVChartModType.LaneRightColorBlue,
+            "lane_right_color_alpha" => XDRVChartModType.LaneRightColorAlpha,
+
+            "drift_move_x" => XDRVChartModType.DriftMoveX,
+            "drift_move_y" => XDRVChartModType.DriftMoveY,
+            "drift_move_z" => XDRVChartModType.DriftMoveZ,
+            "drift_rotate_x" => XDRVChartModType.DriftRotateX,
+            "drift_rotate_y" => XDRVChartModType.DriftRotateY,
+            "drift_rotate_z" => XDRVChartModType.DriftRotateZ,
+
+            "driftleft_move_x" => XDRVChartModType.DriftLeftMoveX,
+            "driftleft_move_y" => XDRVChartModType.DriftLeftMoveY,
+            "driftleft_move_z" => XDRVChartModType.DriftLeftMoveZ,
+            "driftleft_rotate_x" => XDRVChartModType.DriftLeftRotateX,
+            "driftleft_rotate_y" => XDRVChartModType.DriftLeftRotateY,
+            "driftleft_rotate_z" => XDRVChartModType.DriftLeftRotateZ,
+
+            "driftright_move_x" => XDRVChartModType.DriftRightMoveX,
+            "driftright_move_y" => XDRVChartModType.DriftRightMoveY,
+            "driftright_move_z" => XDRVChartModType.DriftRightMoveZ,
+            "driftright_rotate_x" => XDRVChartModType.DriftRightRotateX,
+            "driftright_rotate_y" => XDRVChartModType.DriftRightRotateY,
+            "driftright_rotate_z" => XDRVChartModType.DriftRightRotateZ,
 
             _ => XDRVChartModType.Other
         };

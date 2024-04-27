@@ -268,6 +268,54 @@ public class XDRVMods
 
     #endregion
 
+    #region Drifts
+
+    public float DriftMoveX { get => Values[106]; set => Values[106] = value; }
+    public float DriftMoveY { get => Values[107]; set => Values[107] = value; }
+    public float DriftMoveZ { get => Values[108]; set => Values[108] = value; }
+
+    public Vector3 DriftOffset => new Vector3(DriftMoveX, DriftMoveY, DriftMoveZ);
+
+    public float DriftRotateX { get => Values[109]; set => Values[109] = value; }
+    public float DriftRotateY { get => Values[110]; set => Values[110] = value; }
+    public float DriftRotateZ { get => Values[111]; set => Values[111] = value; }
+
+    public Vector3 DriftRotationEulers => new Vector3(DriftRotateX, DriftRotateY, DriftRotateZ);
+
+
+    public float DriftLeftMoveX { get => Values[112]; set => Values[112] = value; }
+    public float DriftLeftMoveY { get => Values[113]; set => Values[113] = value; }
+    public float DriftLeftMoveZ { get => Values[114]; set => Values[114] = value; }
+
+    public Vector3 DriftLeftOnlyOffset => new Vector3(DriftLeftMoveX, DriftLeftMoveY, DriftLeftMoveZ);
+    public Vector3 DriftLeftOffset => DriftLeftOnlyOffset + DriftOffset;
+
+
+    public float DriftLeftRotateX { get => Values[115]; set => Values[115] = value; }
+    public float DriftLeftRotateY { get => Values[116]; set => Values[116] = value; }
+    public float DriftLeftRotateZ { get => Values[117]; set => Values[117] = value; }
+
+    public Vector3 DriftLeftOnlyRotationEulers => new Vector3(DriftLeftRotateX, DriftLeftRotateY, DriftLeftRotateZ);
+    public Vector3 DriftLeftRotationEulers => DriftLeftOnlyRotationEulers + DriftRotationEulers;
+
+
+    public float DriftRightMoveX { get => Values[118]; set => Values[118] = value; }
+    public float DriftRightMoveY { get => Values[119]; set => Values[119] = value; }
+    public float DriftRightMoveZ { get => Values[120]; set => Values[120] = value; }
+
+    public Vector3 DriftRightOnlyOffset => new Vector3(DriftRightMoveX, DriftRightMoveY, DriftRightMoveZ);
+    public Vector3 DriftRightOffset => DriftRightOnlyOffset + DriftOffset;
+
+
+    public float DriftRightRotateX { get => Values[121]; set => Values[121] = value; }
+    public float DriftRightRotateY { get => Values[122]; set => Values[122] = value; }
+    public float DriftRightRotateZ { get => Values[123]; set => Values[123] = value; }
+
+    public Vector3 DriftRightOnlyRotationEulers => new Vector3(DriftRightRotateX, DriftRightRotateY, DriftRightRotateZ);
+    public Vector3 DriftRightRotationEulers => DriftRightOnlyRotationEulers + DriftRotationEulers;
+
+    #endregion
+
     #region Black Bars
 
     public float BlackBarTopPosition { get => Values[86]; set => Values[86] = value; }
@@ -294,7 +342,21 @@ public class XDRVMods
     public float LaneColorBlue { get => Values[96]; set => Values[96] = value; }
     public float LaneColorAlpha { get => Values[97]; set => Values[97] = value; }
 
+    public float LeftLaneColorRed { get => Values[98]; set => Values[98] = value; }
+    public float LeftLaneColorGreen { get => Values[99]; set => Values[99] = value; }
+    public float LeftLaneColorBlue { get => Values[100]; set => Values[100] = value; }
+    public float LeftLaneColorAlpha { get => Values[101]; set => Values[101] = value; }
+
+    public float RightLaneColorRed { get => Values[102]; set => Values[102] = value; }
+    public float RightLaneColorGreen { get => Values[103]; set => Values[103] = value; }
+    public float RightLaneColorBlue { get => Values[104]; set => Values[104] = value; }
+    public float RightLaneColorAlpha { get => Values[105]; set => Values[105] = value; }
+
     public Color LaneColor { get => new Color(LaneColorRed, LaneColorGreen, LaneColorBlue, LaneColorAlpha); set { LaneColorRed = value.r; LaneColorGreen = value.g; LaneColorBlue = value.b; LaneColorAlpha = value.a; } }
+
+    public Color LeftLaneColor { get => new Color(LeftLaneColorRed, LeftLaneColorGreen, LeftLaneColorBlue, LeftLaneColorAlpha); set { LeftLaneColorRed = value.r; LeftLaneColorGreen = value.g; LeftLaneColorBlue = value.b; LeftLaneColorAlpha = value.a; } }
+
+    public Color RightLaneColor { get => new Color(RightLaneColorRed, RightLaneColorGreen, RightLaneColorBlue, RightLaneColorAlpha); set { RightLaneColorRed = value.r; RightLaneColorGreen = value.g; RightLaneColorBlue = value.b; RightLaneColorAlpha = value.a; } }
 
     #endregion
 
@@ -433,6 +495,40 @@ public class XDRVMods
         LaneColorGreen = 0.075f;
         LaneColorBlue = 0.075f;
         LaneColorAlpha = 1f;
+
+        LeftLaneColorRed = 0f;
+        LeftLaneColorGreen = 0f;
+        LeftLaneColorBlue = 0f;
+        LeftLaneColorAlpha = 0f;
+
+        RightLaneColorRed = 0f;
+        RightLaneColorGreen = 0f;
+        RightLaneColorBlue = 0f;
+        RightLaneColorAlpha = 0f;
+
+        DriftMoveX = 0;
+        DriftMoveY = 0;
+        DriftMoveZ = 0;
+
+        DriftRotateX = 0;
+        DriftRotateY = 0;
+        DriftRotateZ = 0;
+
+        DriftLeftMoveX = 0;
+        DriftLeftMoveY = 0;
+        DriftLeftMoveZ = 0;
+
+        DriftLeftRotateX = 0;
+        DriftLeftRotateY = 0;
+        DriftLeftRotateZ = 0;
+
+        DriftRightMoveX = 0;
+        DriftRightMoveY = 0;
+        DriftRightMoveZ = 0;
+
+        DriftRightRotateX = 0;
+        DriftRightRotateY = 0;
+        DriftRightRotateZ = 0;
     }
 
     public void SetValue(XDRVChartMod mod, float progress)
