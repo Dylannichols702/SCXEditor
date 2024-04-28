@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="400"
+        x:Class="SCXEditor.Views.NewChart"
+        Title="New Chart" Width="200" Height="400">
+	<StackPanel HorizontalAlignment="Center">
+		<TextBlock FontSize="18" FontWeight="Bold">Create Chart</TextBlock>
+		<TextBlock>Chart Difficulty:</TextBlock>
+		<ComboBox/>
+		<TextBlock>Chart Level:</TextBlock>
+		<TextBox Name="diffLevel"></TextBox>
+		<Button Width="75">Create</Button>
+	</StackPanel>
+</Window>
