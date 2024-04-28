@@ -2,7 +2,92 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="250"
         x:Class="SCXEditor.Views.ModsMenu"
-        Title="ModsMenu">
+        RequestedThemeVariant="Light"
+        Title="ModsMenu" Width="650" Height="250">
+  <Grid RowDefinitions="2.5*, *" ColumnDefinitions="200, 400">
+    <Grid Grid.Row="0" Grid.Column="0"
+          RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, Auto"
+          HorizontalAlignment="Left" VerticalAlignment="Center"
+          Margin="20">
+      <RadioButton Grid.Row="0" Grid.Column="0" GroupName="modes" Content="Camera"></RadioButton>
+      <RadioButton Grid.Row="0" Grid.Column="1" GroupName="modes" Content="Black Bars"></RadioButton>
+      <RadioButton Grid.Row="1" Grid.Column="0" GroupName="modes" Content="Note Lanes"></RadioButton>
+      <RadioButton Grid.Row="1" Grid.Column="1" GroupName="modes" Content="Track Color"></RadioButton>
+      <ComboBox HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0"></ComboBox>
+      <ComboBox HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1"></ComboBox>
+    </Grid>
+    <Grid Grid.Row="0" Grid.Column="1"
+          RowDefinitions="Auto, Auto, Auto"
+          HorizontalAlignment="Right" VerticalAlignment="Center">
+      <!-- Ease type and ease functions row -->
+      <Grid Grid.Row="0"
+            ColumnDefinitions="Auto, Auto"
+            HorizontalAlignment="Left">
+        <WrapPanel Orientation="Vertical"
+                   Grid.Row="0" Grid.Column="0">
+          <Label>Ease Type</Label>
+          <ComboBox></ComboBox>
+        </WrapPanel>
+        <WrapPanel Orientation="Vertical"
+                   Grid.Row="0" Grid.Column="1">
+          <Label HorizontalAlignment="Center">Ease Function</Label>
+          <ComboBox HorizontalAlignment="Center"></ComboBox>
+        </WrapPanel>
+      </Grid>
+
+      <!-- Start, End value and swap button -->
+      <Grid Grid.Row="1"
+            ColumnDefinitions="*, *, *"
+            HorizontalAlignment="Left">
+        <WrapPanel Orientation="Vertical"
+                   Grid.Row="0" Grid.Column="0">
+          <Label HorizontalContentAlignment="Center">Start Value</Label>
+          <TextBox Watermark="0"></TextBox>
+        </WrapPanel>
+        <Button Grid.Row="0" Grid.Column="1"
+                VerticalAlignment="Bottom" VerticalContentAlignment="Center">Swap</Button>
+        <WrapPanel Grid.Row="0" Grid.Column="2"
+                   Orientation="Vertical">
+          <Label HorizontalContentAlignment="Center" >End Value</Label>
+          <TextBox Watermark="0"></TextBox>
+        </WrapPanel>
+      </Grid>
+
+      <!-- Initial beat, Length unit, and length(Beats) row-->
+      <Grid Grid.Row="2"
+            ColumnDefinitions="*,*,*"
+            HorizontalAlignment="Left">
+        <WrapPanel Orientation="Vertical"
+                   Grid.Row="0" Grid.Column="0">
+          <Label>Initial Beat</Label>
+          <TextBox HorizontalAlignment="Stretch"></TextBox>
+        </WrapPanel>
+        <WrapPanel Orientation="Vertical"
+                   Grid.Row="0" Grid.Column="1"
+                   HorizontalAlignment="Center">
+          <Label>Length Unit</Label>
+          <ComboBox HorizontalAlignment="Stretch"></ComboBox>
+        </WrapPanel>
+        <WrapPanel Orientation="Vertical"
+                   Grid.Row="0" Grid.Column="2"
+                   HorizontalAlignment="Right">
+          <Label>Length (Beats)</Label>
+          <TextBox HorizontalAlignment="Stretch"></TextBox>
+        </WrapPanel>
+      </Grid>
+    </Grid>
+    <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+          ColumnDefinitions="*, 3*, *"
+          HorizontalAlignment="Stretch" VerticalAlignment="Center">
+      <Label Grid.Column="0" HorizontalAlignment="Right">Output: </Label>
+      <SelectableTextBlock Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           Background="Beige">
+        Hello123123( .... ).Hello123123 ( .... ).Hello123123 ( .... )
+      </SelectableTextBlock>
+      <Button Grid.Column="2" HorizontalAlignment="Right" >Copy</Button>
+    </Grid>
+  </Grid>
 </Window>
