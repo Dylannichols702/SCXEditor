@@ -32,7 +32,7 @@ namespace SCXEditor.ViewModels
 
         private void CreateChartSet()
         {
-            DirectoryInfo chartSet = Directory.CreateDirectory(ChartSetDirectory + "\\test");
+            DirectoryInfo chartSet = Directory.CreateDirectory(ChartSetDirectory + "/test");
         }
 
         private async void ChangeChartSetDirectory()
