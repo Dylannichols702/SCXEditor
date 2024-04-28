@@ -1,9 +1,0 @@
-﻿<Application x:Class="SCXEditor.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SCXEditor"
-             StartupUri="Views/Windows/Main.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
-</Application>

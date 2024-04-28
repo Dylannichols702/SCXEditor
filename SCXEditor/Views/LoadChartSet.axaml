@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="400"
+        x:Class="SCXEditor.Views.LoadChartSet"
+        Title="LoadChartSet" Height="400" Width="200">
+	<StackPanel HorizontalAlignment="Center">
+		<TextBlock FontSize="18" FontWeight="Bold">Load Chart Set</TextBlock>
+		<TextBlock>Chart Set Directory:</TextBlock>
+		<StackPanel Orientation="Horizontal">
+			<TextBox IsReadOnly="True" Width="100"></TextBox>
+			<Button>Select</Button>
+		</StackPanel>
+		<Button Width="75">Load</Button>
+	</StackPanel>
+</Window>
