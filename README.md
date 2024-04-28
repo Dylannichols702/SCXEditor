@@ -5,6 +5,6 @@
 
 - .NET Runtime 7.0.18 or higher
 
-Build instructions (Platform-independent):
+Build instructions (Windows, Mac, Linux):
 
 - Run ```dotnet run``` in the ```SCXEditor.Desktop``` directory
