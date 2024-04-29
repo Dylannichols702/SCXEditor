@@ -9,16 +9,29 @@ using Avalonia.Controls;
 using Avalonia;
 using SCXEditor.Views;
 using System.IO;
+using SCXEditor.Models;
 
 namespace SCXEditor.ViewModels
 {
     public class NewChartSetViewModel : ViewModelBase
     {
         private string chartSetDirectory = "";
+        private string songTitle = "";
+        private string songArtist = "";
         public string ChartSetDirectory 
         { 
             get => chartSetDirectory;
             set => this.RaiseAndSetIfChanged(ref chartSetDirectory, value); 
+        }
+        public string SongTitle 
+        {
+            get => songTitle;
+            set => this.RaiseAndSetIfChanged(ref songTitle, value);
+        }
+        public string SongArtist
+        {
+            get => songArtist;
+            set => this.RaiseAndSetIfChanged(ref songArtist, value);
         }
 
         public ReactiveCommand<Unit, Unit> ChangeChartSetDirectoryCommand { get; set; }
@@ -32,7 +45,8 @@ namespace SCXEditor.ViewModels
 
         private void CreateChartSet()
         {
-            DirectoryInfo chartSet = Directory.CreateDirectory(ChartSetDirectory + "/test");
+            DirectoryInfo chartSet = Directory.CreateDirectory(ChartSetDirectory + "/" + songTitle + " - " + songArtist);
+            ChartSetManager._ActiveChartSet = chartSet.FullName;
         }
 
         private async void ChangeChartSetDirectory()

@@ -11,11 +11,11 @@
 	<StackPanel HorizontalAlignment="Center">
 		<TextBlock FontSize="18" FontWeight="Bold">Create Chart Set</TextBlock>
 		<TextBlock>Song Title:</TextBlock>
-		<TextBox Name="songTitle"/>
+		<TextBox Name="songTitle" Text="{Binding SongTitle}"/>
 		<TextBlock>Song Artist:</TextBlock>
-		<TextBox Name="songArtist"/>
+		<TextBox Name="songArtist" Text="{Binding SongArtist}"/>
 		<TextBlock>Chart Set Album Directory:</TextBlock>
-		<TextBox IsReadOnly="False" Text="{Binding ChartSetDirectory}"/>
+		<TextBox IsReadOnly="True" Text="{Binding ChartSetDirectory}"/>
 		<Button Name="chartSetPathSelect" Command="{Binding ChangeChartSetDirectoryCommand}">Select Path</Button>
 		<Button Command="{Binding CreateChartSetCommand}">Create</Button>
 	</StackPanel>
