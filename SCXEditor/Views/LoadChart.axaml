@@ -8,7 +8,7 @@
 	<StackPanel HorizontalAlignment="Center">
 		<TextBlock FontSize="18" FontWeight="Bold">Load Chart</TextBlock>
 		<TextBlock>Chart:</TextBlock>
-		<ComboBox Width="100"/>
-		<Button Width="75">Load</Button>
+		<ComboBox  ItemsSource="{Binding Charts}" SelectedValue="{Binding SelectedChart}"/>
+		<Button Width="75" Command="{Binding LoadChartCommand}">Load</Button>
 	</StackPanel>
 </Window>

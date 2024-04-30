@@ -16,22 +16,16 @@ namespace SCXEditor.ViewModels
     public class NewChartSetViewModel : ViewModelBase
     {
         private string chartSetDirectory = "";
-        private string songTitle = "";
-        private string songArtist = "";
+        private string folderName = "";
         public string ChartSetDirectory 
         { 
             get => chartSetDirectory;
             set => this.RaiseAndSetIfChanged(ref chartSetDirectory, value); 
         }
-        public string SongTitle 
+        public string FolderName 
         {
-            get => songTitle;
-            set => this.RaiseAndSetIfChanged(ref songTitle, value);
-        }
-        public string SongArtist
-        {
-            get => songArtist;
-            set => this.RaiseAndSetIfChanged(ref songArtist, value);
+            get => folderName;
+            set => folderName = value;
         }
 
         public ReactiveCommand<Unit, Unit> ChangeChartSetDirectoryCommand { get; set; }
@@ -45,7 +39,7 @@ namespace SCXEditor.ViewModels
 
         private void CreateChartSet()
         {
-            DirectoryInfo chartSet = Directory.CreateDirectory(ChartSetDirectory + "/" + songTitle + " - " + songArtist);
+            DirectoryInfo chartSet = Directory.CreateDirectory(ChartSetDirectory + "/" + folderName);
             ChartSetManager._ActiveChartSet = chartSet.FullName;
         }
 

@@ -2,15 +2,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="400"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
         x:Class="SCXEditor.Views.NewChart"
-        Title="New Chart" Width="200" Height="400">
+        Title="New Chart" Width="300" Height="400">
 	<StackPanel HorizontalAlignment="Center">
 		<TextBlock FontSize="18" FontWeight="Bold">Create Chart</TextBlock>
+		<TextBlock>Song Title:</TextBlock>
+		<TextBox Name="songTitle" Text="{Binding SongTitle}"/>
+		<TextBlock>Song Artist:</TextBlock>
+		<TextBox Name="songArtist" Text="{Binding SongArtist}"/>
 		<TextBlock>Chart Difficulty:</TextBlock>
-		<ComboBox/>
+		<ComboBox ItemsSource="{Binding Difficulties}" SelectedValue="{Binding SelectedDifficulty}"/>
 		<TextBlock>Chart Level:</TextBlock>
-		<TextBox Name="diffLevel"></TextBox>
-		<Button Width="75">Create</Button>
+		<TextBox Name="diffLevel" Text="{Binding DifficultyLevel}"></TextBox>
+		<TextBlock>Chart Artist (Chartist, if you will):</TextBlock>
+		<TextBox Name="chartArtist" Text="{Binding ChartArtist}"></TextBox>
+		<Button Width="75" Command="{Binding CreateChartCommand}">Create</Button>
 	</StackPanel>
 </Window>
