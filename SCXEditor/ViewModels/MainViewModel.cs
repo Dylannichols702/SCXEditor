@@ -1,5 +1,6 @@
 ﻿namespace SCXEditor.ViewModels;
 using ReactiveUI;
+using SCXEditor.Models;
 using SCXEditor.Views;
 using System;
 using System.Reactive;
@@ -45,14 +46,20 @@ public class MainViewModel : ViewModelBase
 
     private void ShowLoadChartWindow()
     {
-        LoadChart loadChartWin = new LoadChart();
-        loadChartWin.Show();
+        if (ChartSetManager._ActiveChartSet != null) 
+        {
+            LoadChart loadChartWin = new LoadChart();
+            loadChartWin.Show();
+        } 
     }
 
     private void ShowNewChartWindow()
     {
-        NewChart newChartWin = new NewChart();
-        newChartWin.Show();
+        if (ChartSetManager._ActiveChartSet != null)
+        {
+            NewChart newChartWin = new NewChart();
+            newChartWin.Show();
+        }
     }
 
     private void ShowLoadChartSetWindow()

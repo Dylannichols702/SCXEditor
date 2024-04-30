@@ -13,22 +13,22 @@ namespace SCXEditor.ViewModels
 {
     public class LoadChartSetViewModel : ViewModelBase
     {
-        private string chartSetDirectory = "";
-        private string songTitle = "";
-        private string songArtist = "";
-        public string ChartSetDirectory 
+        private string? chartSetDirectory;
+        private string? songTitle;
+        private string? songArtist;
+        public string? ChartSetDirectory 
         { 
             get => chartSetDirectory; 
             set => this.RaiseAndSetIfChanged(ref chartSetDirectory, value); 
         }
 
-        public string SongTitle
+        public string? SongTitle
         {
             get => songTitle;
             set => songTitle = value;
         }
 
-        public string SongArtist
+        public string? SongArtist
         {
             get => songArtist;
             set => songArtist = value;

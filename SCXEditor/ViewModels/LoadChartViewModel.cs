@@ -12,11 +12,19 @@ namespace SCXEditor.ViewModels
 {
     public class LoadChartViewModel : ViewModelBase
     {
-        private string[] charts = Directory.GetFiles(ChartSetManager._ActiveChartSet, "*.xdrv");
-        private string selectedChart;
+        private string? selectedChart;
 
-        public string[] Charts { get => charts; set => charts = value; }
-        public string SelectedChart { get => selectedChart; set => selectedChart = value; }
+        public string[] Charts { 
+            get 
+            { 
+                if (ChartSetManager._ActiveChartSet != null)
+                {
+                    return Directory.GetFiles(ChartSetManager._ActiveChartSet, "*.xdrv");
+                }
+                return new string[] { };
+            } 
+        }
+        public string? SelectedChart { get => selectedChart; set => selectedChart = value; }
 
         public ReactiveCommand<Unit, Unit> LoadChartCommand { get; set; }
         public LoadChartViewModel()

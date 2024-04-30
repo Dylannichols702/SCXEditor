@@ -13,18 +13,18 @@ namespace SCXEditor.ViewModels
     public class NewChartViewModel : ViewModelBase
     {
         private Array diffs = Enum.GetValues(typeof(XDRVDifficulty));
-        private string songTitle;
-        private string songArtist;
+        private string? songTitle;
+        private string? songArtist;
         private XDRVDifficulty selectedDiff;
         private int difficultyLevel;
-        private string chartArtist;
+        private string? chartArtist;
 
         public Array Difficulties { get => diffs; }
         public int DifficultyLevel { get => difficultyLevel; set => difficultyLevel = value; }
         public XDRVDifficulty SelectedDifficulty { get => selectedDiff; set => selectedDiff = value; }
-        public string SongTitle { get => songTitle; set => songTitle = value; }
-        public string SongArtist { get => songArtist; set => songArtist = value; }
-        public string ChartArtist { get => chartArtist; set => chartArtist = value; }
+        public string? SongTitle { get => songTitle; set => songTitle = value; }
+        public string? SongArtist { get => songArtist; set => songArtist = value; }
+        public string? ChartArtist { get => chartArtist; set => chartArtist = value; }
 
         public ReactiveCommand<Unit, Unit> CreateChartCommand { get; set; }
 

@@ -15,14 +15,14 @@ namespace SCXEditor.ViewModels
 {
     public class NewChartSetViewModel : ViewModelBase
     {
-        private string chartSetDirectory = "";
-        private string folderName = "";
-        public string ChartSetDirectory 
+        private string? chartSetDirectory;
+        private string? folderName;
+        public string? ChartSetDirectory 
         { 
             get => chartSetDirectory;
             set => this.RaiseAndSetIfChanged(ref chartSetDirectory, value); 
         }
-        public string FolderName 
+        public string? FolderName 
         {
             get => folderName;
             set => folderName = value;
