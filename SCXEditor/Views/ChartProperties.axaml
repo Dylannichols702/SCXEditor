@@ -2,7 +2,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="400"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="500"
         x:Class="SCXEditor.Views.ChartProperties"
-        Title="ChartProperties" Width="200" Height="400">
+        Title="ChartProperties" Width="200" Height="500">
+	<StackPanel HorizontalAlignment="Center">
+		<TextBlock FontSize="18" FontWeight="Bold">Chart Properties</TextBlock>
+		<TextBlock>Chart Author</TextBlock>
+	    <TextBox/>
+		<TextBlock>Chart Difficulty</TextBlock>
+		<TextBox/>
+		<TextBlock>Chart Level</TextBlock>
+		<TextBox/>
+		<TextBlock>Music Preview Start</TextBlock>
+		<TextBox/>
+		<TextBlock>Music Preview Length</TextBlock>
+		<TextBox/>
+		<TextBlock>Display BPM</TextBlock>
+		<TextBox/>
+		<TextBlock>True BPM</TextBlock>
+		<TextBox/>
+		<TextBlock>Stage Background</TextBlock>
+		<ComboBox/>
+		<Button>Save</Button>
+	</StackPanel>
 </Window>
+
