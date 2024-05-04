@@ -57,8 +57,8 @@
           Padding="10">
         <StackPanel>
           <StackPanel>
-            <Label Target="jacket_filename">Image filename</Label>
-            <TextBox Name="jacket_filename" Watermark="img.png"></TextBox>
+            <Label Target="jacket_file">Image File</Label>
+            <ComboBox Name="jacket_file"/>
             <Label Target="jacket_illustrator">Illustrator</Label>
             <TextBox Name="jacket_illustrator" Watermark="artist name"></TextBox>
           </StackPanel>
@@ -66,6 +66,9 @@
         </StackPanel>
       </Border>
     </StackPanel>
+	  <StackPanel Margin="0 10 0 0">
+	    <Button>Save</Button>
+	  </StackPanel>
   </StackPanel>
 
 </Window>
