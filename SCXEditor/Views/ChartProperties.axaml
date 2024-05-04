@@ -2,28 +2,95 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="500"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
+        RequestedThemeVariant="Light"
         x:Class="SCXEditor.Views.ChartProperties"
-        Title="ChartProperties" Width="200" Height="500">
-	<StackPanel HorizontalAlignment="Center">
-		<TextBlock FontSize="18" FontWeight="Bold">Chart Properties</TextBlock>
-		<TextBlock>Chart Author</TextBlock>
-	    <TextBox/>
-		<TextBlock>Chart Difficulty</TextBlock>
-		<TextBox/>
-		<TextBlock>Chart Level</TextBlock>
-		<TextBox/>
-		<TextBlock>Music Preview Start</TextBlock>
-		<TextBox/>
-		<TextBlock>Music Preview Length</TextBlock>
-		<TextBox/>
-		<TextBlock>Display BPM</TextBlock>
-		<TextBox/>
-		<TextBlock>True BPM</TextBlock>
-		<TextBox/>
-		<TextBlock>Stage Background</TextBlock>
-		<ComboBox/>
-		<Button>Save</Button>
-	</StackPanel>
+        Title="ChartProperties"
+        Width="200" Height="600"
+        MinWidth="200" MaxWidth="300"
+        MinHeight="400" MaxHeight="800">
+  <Border Height="{Binding $parent[Window].Height}">
+    <ScrollViewer>
+      <StackPanel HorizontalAlignment="Center">
+        <TextBlock Height="20" FontSize="18" FontWeight="Bold">Chart Properties</TextBlock>
+
+        <TextBlock>Chart</TextBlock>
+        <Border Height="180" BorderBrush="Black"
+              BorderThickness="1"
+              CornerRadius="2"
+              Padding="10">
+          <StackPanel>
+            <Label Target="chart_author">Chart Author</Label>
+            <TextBox Name="chart_author" Watermark="Your name"/>
+            <TextBlock>Chart Difficulty</TextBlock>
+            <ComboBox SelectedIndex="0">
+              <ComboBoxItem>BEGINNER</ComboBoxItem>
+              <ComboBoxItem>BEGINNER</ComboBoxItem>
+              <ComboBoxItem>BEGINNER</ComboBoxItem>
+              <ComboBoxItem>BEGINNER</ComboBoxItem>
+            </ComboBox>
+            <TextBlock>Chart Level</TextBlock>
+            <!--idk the min~max levels so pls change this later-->
+            <NumericUpDown ShowButtonSpinner="False"
+                           Value="1"
+                           FormatString="0"
+                           Increment="1"
+                           Minimum="1"
+                           Maximum="15"/>
+          </StackPanel>
+        </Border>
+
+        <TextBlock>Track Preview</TextBlock>
+        <Border Height="120" BorderBrush="Black"
+              BorderThickness="1"
+              CornerRadius="2"
+              Padding="10">
+          <StackPanel>
+            <!--not sure how the formats should be like for these two-->
+            <TextBlock>Music Preview Start</TextBlock>
+            <NumericUpDown ShowButtonSpinner="False"
+                       Value="0.00"
+                       FormatString="0.00"/>
+            <TextBlock>Music Preview Length</TextBlock>
+            <NumericUpDown ShowButtonSpinner="False"
+                       Value="0.00"
+                       FormatString="0.00"/>
+          </StackPanel>
+        </Border>
+
+        <TextBlock>BPM</TextBlock>
+        <Border Height="120" BorderBrush="Black"
+              BorderThickness="1"
+              CornerRadius="2"
+              Padding="10">
+          <StackPanel>
+            <TextBlock>Display BPM</TextBlock>
+            <NumericUpDown ShowButtonSpinner="False"
+                       Value="150.00"
+                       FormatString="0.00"/>
+            <TextBlock>True BPM</TextBlock>
+            <NumericUpDown ShowButtonSpinner="False"
+                       Value="150.00"
+                       FormatString="0.00"/>
+          </StackPanel>
+        </Border>
+
+        <TextBlock>Extra</TextBlock>
+        <Border Height="140" BorderBrush="Black"
+                     BorderThickness="1"
+                     CornerRadius="2"
+                     Padding="10">
+          <StackPanel>
+            <CheckBox IsChecked="True">Unlocked by the default?</CheckBox>
+            <CheckBox>Hide RPC?</CheckBox>
+            <TextBlock>Stage Background</TextBlock>
+            <ComboBox/>
+          </StackPanel>
+        </Border>
+
+        <Button>Save</Button>
+      </StackPanel>
+    </ScrollViewer>
+  </Border>
 </Window>
 
