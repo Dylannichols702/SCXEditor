@@ -21,18 +21,14 @@
               Padding="10">
           <StackPanel>
             <Label Target="chart_author">Chart Author</Label>
-            <TextBox Name="chart_author" Watermark="Your name"/>
+            <TextBox Name="chart_author" Watermark="Your name" Text="{Binding ChartAuthor}"/>
             <TextBlock>Chart Difficulty</TextBlock>
-            <ComboBox SelectedIndex="0">
-              <ComboBoxItem>BEGINNER</ComboBoxItem>
-              <ComboBoxItem>BEGINNER</ComboBoxItem>
-              <ComboBoxItem>BEGINNER</ComboBoxItem>
-              <ComboBoxItem>BEGINNER</ComboBoxItem>
-            </ComboBox>
+            <ComboBox ItemsSource="{Binding Difficulties}" SelectedValue="{Binding SelectedDifficulty}"
+                      HorizontalAlignment="Stretch"/>
             <TextBlock>Chart Level</TextBlock>
             <!--idk the min~max levels so pls change this later-->
             <NumericUpDown ShowButtonSpinner="False"
-                           Value="1"
+                           Value="{Binding ChartLevel}"
                            FormatString="0"
                            Increment="1"
                            Minimum="1"
@@ -49,11 +45,11 @@
             <!--not sure how the formats should be like for these two-->
             <TextBlock>Music Preview Start</TextBlock>
             <NumericUpDown ShowButtonSpinner="False"
-                       Value="0.00"
+                       Value="{Binding MusicPreviewStart}"
                        FormatString="0.00"/>
             <TextBlock>Music Preview Length</TextBlock>
             <NumericUpDown ShowButtonSpinner="False"
-                       Value="0.00"
+                       Value="{Binding MusicPreviewLength}"
                        FormatString="0.00"/>
           </StackPanel>
         </Border>
@@ -66,11 +62,11 @@
           <StackPanel>
             <TextBlock>Display BPM</TextBlock>
             <NumericUpDown ShowButtonSpinner="False"
-                       Value="150.00"
+                       Value="{Binding DisplayBPM}"
                        FormatString="0.00"/>
             <TextBlock>True BPM</TextBlock>
             <NumericUpDown ShowButtonSpinner="False"
-                       Value="150.00"
+                       Value="{Binding TrueBPM}"
                        FormatString="0.00"/>
           </StackPanel>
         </Border>
@@ -81,10 +77,10 @@
                      CornerRadius="2"
                      Padding="10">
           <StackPanel>
-            <CheckBox IsChecked="True">Unlocked by the default?</CheckBox>
-            <CheckBox>Hide RPC?</CheckBox>
+            <CheckBox IsChecked="{Binding IsUnlockedByDefault}">Unlocked by the default?</CheckBox>
+            <CheckBox IsChecked="{Binding IsHideRPC}">Hide RPC?</CheckBox>
             <TextBlock>Stage Background</TextBlock>
-            <ComboBox/>
+            <ComboBox HorizontalAlignment="Stretch"/>
           </StackPanel>
         </Border>
 

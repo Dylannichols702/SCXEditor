@@ -33,7 +33,7 @@
               <NumericUpDown Name="audio_volume"
                              Minimum="0"
                              Maximum="150"
-                             Value="100"
+                             Value="{Binding Volume}"
                              Increment="1"
                              FormatString="0"
                              ClipValueToMinMax="True"
@@ -43,7 +43,7 @@
               <NumericUpDown Name="audio_offset"
                              Minimum="-5.0"
                              Maximum="5.0"
-                             Value="0.0"
+                             Value="{Binding Offset}"
                              Increment="0.01"
                              FormatString="0.00"
                              ClipValueToMinMax="True"
@@ -65,7 +65,7 @@
                 <Label Target="jacket_file">Image File</Label>
                 <ComboBox Name="jacket_file"/>
                 <Label Target="jacket_illustrator">Illustrator</Label>
-                <TextBox Name="jacket_illustrator" Watermark="artist name"></TextBox>
+                <TextBox Name="jacket_illustrator" Watermark="artist name" Text="{Binding Illustrator}"></TextBox>
               </StackPanel>
 
             </StackPanel>
