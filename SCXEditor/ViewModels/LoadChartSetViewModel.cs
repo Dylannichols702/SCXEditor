@@ -56,8 +56,6 @@ namespace SCXEditor.ViewModels
             if (ChartSetDirectory != "") 
             {
                 ChartSetManager._ActiveChartSet = ChartSetDirectory;
-                ChartSetManager._SongTitle = SongTitle;
-                ChartSetManager._SongArtist = SongArtist;
             }
         }
     }
