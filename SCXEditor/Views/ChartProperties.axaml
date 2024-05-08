@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
         RequestedThemeVariant="Light"
         x:Class="SCXEditor.Views.ChartProperties"
-        Title="ChartProperties"
+        Title="Chart Properties"
         Width="200" Height="600"
         MinWidth="200" MaxWidth="300"
         MinHeight="400" MaxHeight="800">
@@ -21,7 +21,7 @@
               Padding="10">
           <StackPanel>
             <Label Target="chart_author">Chart Author</Label>
-            <TextBox Name="chart_author" Watermark="Your name" Text="{Binding ChartAuthor}"/>
+            <TextBox Name="chart_author" Watermark="Your Name" Text="{Binding ChartAuthor}"/>
             <TextBlock>Chart Difficulty</TextBlock>
             <ComboBox ItemsSource="{Binding Difficulties}" SelectedValue="{Binding SelectedDifficulty}"
                       HorizontalAlignment="Stretch"/>
@@ -77,8 +77,8 @@
                      CornerRadius="2"
                      Padding="10">
           <StackPanel>
-            <CheckBox IsChecked="{Binding IsUnlockedByDefault}">Unlocked by the default?</CheckBox>
-            <CheckBox IsChecked="{Binding IsHideRPC}">Hide RPC?</CheckBox>
+            <CheckBox IsChecked="{Binding IsUnlockedByDefault}">Unlocked by Default</CheckBox>
+            <CheckBox IsChecked="{Binding IsHideRPC}">Hide RPC</CheckBox>
             <TextBlock>Stage Background</TextBlock>
             <ComboBox HorizontalAlignment="Stretch"/>
           </StackPanel>
