@@ -72,7 +72,7 @@ namespace SCXEditor.ViewModels
             filter.Extensions.Add("wav");
             ofd.Filters.Add(filter);
             string[]? input = await ofd.ShowAsync(new MainWindow());
-            AudioFileName = input == null ? null : input[0];
+            AudioFileName = input == null ? null : Path.GetFileName(input[0]);
         }
 
         private void CreateChart()
