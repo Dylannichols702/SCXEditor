@@ -62,9 +62,6 @@ namespace SCXEditor.ViewModels
                 activeChart.chartMetadata.RpcHidden = IsHideRPC;
                 activeChart.Serialize();
             }
-
-            MainWindow win = new MainWindow();
-            win.Show();
         }
     }
 }
