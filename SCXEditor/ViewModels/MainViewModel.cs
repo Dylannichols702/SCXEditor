@@ -17,11 +17,8 @@ public class MainViewModel : ViewModelBase
 
     public MainViewModel()
     {
-        ShowNewChartSetWindowCommand = ReactiveCommand.Create(ShowNewChartSetWindow);
-        ShowLoadChartSetWindowCommand = ReactiveCommand.Create(ShowLoadChartSetWindow);
         ShowNewChartWindowCommand = ReactiveCommand.Create(ShowNewChartWindow);
         ShowLoadChartWindowCommand = ReactiveCommand.Create(ShowLoadChartWindow);
-        ShowChartSetPropertiesWindowCommand = ReactiveCommand.Create(ShowChartSetPropertiesWindow);
         ShowChartPropertiesWindowCommand = ReactiveCommand.Create(ShowChartPropertiesWindow);
         ShowModsMenuWindowCommand = ReactiveCommand.Create(ShowModsMenuWindow);
     }
@@ -34,43 +31,21 @@ public class MainViewModel : ViewModelBase
 
     private void ShowChartPropertiesWindow()
     {
-        ChartProperties chartPropertiesWin = new ChartProperties();
-        chartPropertiesWin.Show();
-    }
-
-    private void ShowChartSetPropertiesWindow()
-    {
-        ChartSetProperties chartSetPropertiesWin = new ChartSetProperties();
-        chartSetPropertiesWin.Show();
+        if (ChartManager._ActiveChart != null) {
+            ChartProperties chartPropertiesWin = new ChartProperties();
+            chartPropertiesWin.Show();
+        }
     }
 
     private void ShowLoadChartWindow()
     {
-        if (ChartSetManager._ActiveChartSet != null) 
-        {
-            LoadChart loadChartWin = new LoadChart();
-            loadChartWin.Show();
-        } 
+        LoadChart loadChartWin = new LoadChart();
+        loadChartWin.Show();
     }
 
     private void ShowNewChartWindow()
     {
-        if (ChartSetManager._ActiveChartSet != null)
-        {
-            NewChart newChartWin = new NewChart();
-            newChartWin.Show();
-        }
-    }
-
-    private void ShowLoadChartSetWindow()
-    {
-        LoadChartSet loadChartSetWin = new LoadChartSet();
-        loadChartSetWin.Show();
-    }
-
-    private void ShowNewChartSetWindow()
-    {
-        NewChartSet newChartSetWin = new NewChartSet();
-        newChartSetWin.Show();
+        NewChart newChartWin = new NewChart();
+        newChartWin.Show();
     }
 }
