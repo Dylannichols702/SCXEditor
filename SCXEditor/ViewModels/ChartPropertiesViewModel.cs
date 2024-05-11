@@ -1,6 +1,10 @@
-﻿using System;
+﻿using ReactiveUI;
+using SCXEditor.Models;
+using SCXEditor.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,39 +12,59 @@ namespace SCXEditor.ViewModels
 {
     public class ChartPropertiesViewModel : ViewModelBase
     {
-        private String? _ChartAuthor;
+        private static XDRV? activeChart = ChartManager._ActiveChart;
+        private string? _ChartAuthor = activeChart != null ? activeChart.chartMetadata.ChartAuthor : null;
         private Array _Difficulties = Enum.GetValues(typeof(XDRVDifficulty));
-        private XDRVDifficulty _SelectedDifficulty;
-        private int _ChartLevel = 1;
+        private XDRVDifficulty _SelectedDifficulty = activeChart != null ? activeChart.chartMetadata.ChartDifficulty : XDRVDifficulty.Beginner;
+        private int _ChartLevel = activeChart != null ? activeChart.chartMetadata.ChartLevel : 1;
 
-        private double _MusicPreviewStart = 0.00;
-        private double _MusicPreviewLength = 0.00;
+        private float _MusicPreviewStart = activeChart != null ? activeChart.chartMetadata.MusicPreviewStart : 0.00f;
+        private float _MusicPreviewLength = activeChart != null ? activeChart.chartMetadata.MusicPreviewLength : 0.00f;
 
-        private double _DisplayBPM = 150.00;
-        private double _TrueBPM = 150.00;
+        private int _DisplayBPM = activeChart != null ? activeChart.chartMetadata.ChartDisplayBPM : 150;
+        private float _TrueBPM = activeChart != null ? activeChart.chartMetadata.ChartBPM : 150.00f;
 
-        private bool _IsUnlockedByDefault = true;
-        private bool _IsHideRPC = false;
+        private bool _IsHideRPC = activeChart != null ? activeChart.chartMetadata.RpcHidden : false;
 
-        // how do I stagebackground??
-
-        public String? ChartAuthor { get => _ChartAuthor; set => _ChartAuthor = value; }
+        public string? ChartAuthor { get => _ChartAuthor; set => _ChartAuthor = value; }
         public Array Difficulties { get => _Difficulties;  }
         public XDRVDifficulty SelectedDifficulty { get => _SelectedDifficulty; set => _SelectedDifficulty = value; }
         public int ChartLevel { get => _ChartLevel; set => _ChartLevel = value; }
 
-        public double MusicPreviewStart { get => _MusicPreviewStart; set => _MusicPreviewStart = value; }
-        public double MusicPreviewLength { get => _MusicPreviewLength; set => _MusicPreviewLength = value; }
+        public float MusicPreviewStart { get => _MusicPreviewStart; set => _MusicPreviewStart = value; }
+        public float MusicPreviewLength { get => _MusicPreviewLength; set => _MusicPreviewLength = value; }
 
-        public double DisplayBPM { get => _DisplayBPM; set => _DisplayBPM = value; }
-        public double TrueBPM { get => _TrueBPM; set => _TrueBPM = value; }
+        public int DisplayBPM { get => _DisplayBPM; set => _DisplayBPM = value; }
+        public float TrueBPM { get => _TrueBPM; set => _TrueBPM = value; }
 
-        public bool IsUnlockedByDefault { get => _IsUnlockedByDefault; set => _IsUnlockedByDefault = value; }
         public bool IsHideRPC { get => _IsHideRPC; set => _IsHideRPC = value; }
+
+        public ReactiveCommand<Unit, Unit> SaveChartPropertiesCommand { get; set; }
 
         public ChartPropertiesViewModel()
         {
+            SaveChartPropertiesCommand = ReactiveCommand.Create(SaveChartProperties);
+        }
 
+        private void SaveChartProperties()
+        {
+            XDRV? activeChart = ChartManager._ActiveChart;
+
+            if (activeChart != null)
+            {
+                activeChart.chartMetadata.ChartAuthor = ChartAuthor;
+                activeChart.chartMetadata.ChartDifficulty = SelectedDifficulty;
+                activeChart.chartMetadata.ChartLevel = ChartLevel;
+                activeChart.chartMetadata.MusicPreviewStart = MusicPreviewStart;
+                activeChart.chartMetadata.MusicPreviewLength = MusicPreviewLength;
+                activeChart.chartMetadata.ChartDisplayBPM = DisplayBPM;
+                activeChart.chartMetadata.ChartBPM = TrueBPM;
+                activeChart.chartMetadata.RpcHidden = IsHideRPC;
+                activeChart.Serialize();
+            }
+
+            MainWindow win = new MainWindow();
+            win.Show();
         }
     }
 }

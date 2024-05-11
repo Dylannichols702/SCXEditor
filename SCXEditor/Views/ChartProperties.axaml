@@ -21,7 +21,7 @@
               Padding="10">
           <StackPanel>
             <Label Target="chart_author">Chart Author</Label>
-            <TextBox Name="chart_author" Watermark="Your Name" Text="{Binding ChartAuthor}"/>
+            <TextBox Name="chart_author" Watermark="Your Name" Text="{Binding ChartAuthor, Mode=TwoWay}"/>
             <TextBlock>Chart Difficulty</TextBlock>
             <ComboBox ItemsSource="{Binding Difficulties}" SelectedValue="{Binding SelectedDifficulty}"
                       HorizontalAlignment="Stretch"/>
@@ -63,7 +63,8 @@
             <TextBlock>Display BPM</TextBlock>
             <NumericUpDown ShowButtonSpinner="False"
                        Value="{Binding DisplayBPM}"
-                       FormatString="0.00"/>
+                       FormatString="0"
+					   Increment="1"/>
             <TextBlock>True BPM</TextBlock>
             <NumericUpDown ShowButtonSpinner="False"
                        Value="{Binding TrueBPM}"
@@ -77,12 +78,11 @@
                      CornerRadius="2"
                      Padding="10">
           <StackPanel>
-            <CheckBox IsChecked="{Binding IsUnlockedByDefault}">Unlocked by Default</CheckBox>
             <CheckBox IsChecked="{Binding IsHideRPC}">Hide RPC</CheckBox>
           </StackPanel>
         </Border>
 
-        <Button>Save</Button>
+        <Button Command="{Binding SaveChartPropertiesCommand}">Save</Button>
       </StackPanel>
     </ScrollViewer>
   </Border>

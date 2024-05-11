@@ -35,7 +35,7 @@ namespace SCXEditor.ViewModels
         private void LoadChart()
         {
             XDRV loadedChart = XDRV.DeserializeFromFile(selectedChart);
-            Console.WriteLine(loadedChart);
+            ChartManager._ActiveChart = loadedChart;
         }
     }
 }
