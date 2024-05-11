@@ -2,13 +2,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="800"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="1200"
         RequestedThemeVariant="Light"
         x:Class="SCXEditor.Views.ChartProperties"
         Title="Chart Properties"
         Width="200" Height="600"
         MinWidth="200" MaxWidth="300"
-        MinHeight="400" MaxHeight="800">
+        MinHeight="400" MaxHeight="1200">
   <Border Height="{Binding $parent[Window].Height}">
     <ScrollViewer>
       <StackPanel HorizontalAlignment="Center">
@@ -71,6 +71,59 @@
                        FormatString="0.00"/>
           </StackPanel>
         </Border>
+
+		  <!--Audio file fields-->
+		  <StackPanel  Margin="0 10 0 0">
+			  <TextBlock>Audio</TextBlock>
+			  <Border
+				  BorderBrush="Black"
+				  BorderThickness="1"
+				  CornerRadius="2"
+				  Padding="10">
+				  <StackPanel>
+					  <Label>Volume</Label>
+					  <NumericUpDown Name="audio_volume"
+									 Minimum="0"
+									 Maximum="100"
+									 Value="{Binding Volume}"
+									 Increment="1"
+									 FormatString="0"
+									 ClipValueToMinMax="True"
+									 AllowSpin="True"/>
+					  <Label>Offset</Label>
+					  <!--idk how much offset you need so pls change this later-->
+					  <NumericUpDown Name="audio_offset"
+									 Minimum="-5.0"
+									 Maximum="5.0"
+									 Value="{Binding Offset}"
+									 Increment="0.01"
+									 FormatString="0.00"
+									 ClipValueToMinMax="True"
+									 AllowSpin="True"/>
+				  </StackPanel>
+			  </Border>
+		  </StackPanel>
+
+		  <!--Jacket field-->
+		  <StackPanel Margin="0 10 0 0">
+			  <TextBlock>Jacket(Optional)</TextBlock>
+			  <Border
+				  BorderBrush="Black"
+				  BorderThickness="1"
+				  CornerRadius="2"
+				  Padding="10">
+				  <StackPanel>
+					  <StackPanel>
+						  <TextBlock>Image File:</TextBlock>
+						  <TextBox IsReadOnly="True" Text="{Binding SelectedJacket}"/>
+						  <Button Name="audioFilePathSelect" Command="{Binding ChangeSelectedJacketCommand}">Select Path</Button>
+					  </StackPanel>
+					  <StackPanel>
+						  <TextBlock>Jacket Illustrator:</TextBlock>
+						  <TextBox Text="{Binding JacketIllustrator}"/>					  </StackPanel>
+				  </StackPanel>
+			  </Border>
+		  </StackPanel>
 
         <TextBlock>Extra</TextBlock>
         <Border BorderBrush="Black"
