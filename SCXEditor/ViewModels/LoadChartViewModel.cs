@@ -5,41 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using SCXEditor.Models;
-using ReactiveUI;
-using System.Reactive;
 using SCXEditor.Views;
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SCXEditor.ViewModels
 {
-    public class LoadChartViewModel : ViewModelBase
+    public partial class LoadChartViewModel : ViewModelBase
     {
-        private string? selectedChart;
-        private string? chartDirectory;
-
-        public string[] Charts { 
-            get 
-            { 
-                if (ChartSetManager._ActiveChartSet != null)
-                {
-                    return Directory.GetFiles(ChartSetManager._ActiveChartSet, "*.xdrv");
-                }
-                return new string[] { };
-            } 
-        }
-        public string? SelectedChart { get => selectedChart; set => selectedChart = value; }
-        public string? ChartDirectory { get => chartDirectory; set => this.RaiseAndSetIfChanged(ref chartDirectory, value); }
-
-        public ReactiveCommand<Unit, Unit> LoadChartCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> ChangeChartDirectoryCommand { get; set; }
+        [ObservableProperty] private string? chartDirectory;
 
         public LoadChartViewModel()
         {
-            LoadChartCommand = ReactiveCommand.Create(LoadChart);
-            ChangeChartDirectoryCommand = ReactiveCommand.Create(ChangeChartDirectory); 
+
         }
 
-        private async void ChangeChartDirectory()
+        [RelayCommand]
+        private async Task ChangeChartDirectory()
         {
             // TODO: This method is jank and deprecated, fix it later.
             OpenFileDialog ofd = new OpenFileDialog();
@@ -51,9 +34,10 @@ namespace SCXEditor.ViewModels
             ChartDirectory = input == null ? null : input[0];
         }
 
+        [RelayCommand]
         private void LoadChart()
         {
-            XDRV loadedChart = XDRV.DeserializeFromFile(chartDirectory);
+            XDRV loadedChart = XDRV.DeserializeFromFile(ChartDirectory);
             ChartManager._ActiveChart = loadedChart;
         }
     }

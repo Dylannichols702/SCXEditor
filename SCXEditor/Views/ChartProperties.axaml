@@ -21,7 +21,7 @@
               Padding="10">
           <StackPanel>
             <Label Target="chart_author">Chart Author</Label>
-            <TextBox Name="chart_author" Watermark="Your Name" Text="{Binding ChartAuthor, Mode=TwoWay}"/>
+            <TextBox Name="chart_author" Watermark="Your Name" Text="{Binding ChartAuthor}"/>
             <TextBlock>Chart Difficulty</TextBlock>
             <ComboBox ItemsSource="{Binding Difficulties}" SelectedValue="{Binding SelectedDifficulty}"
                       HorizontalAlignment="Stretch"/>
