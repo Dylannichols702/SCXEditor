@@ -6,9 +6,16 @@ using System;
 using System.Reactive;
 using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.Input;
+using Avalonia.Controls;
+using Avalonia.Input;
 
 public partial class MainViewModel : ViewModelBase
 {
+    public MainViewModel ()
+    {
+
+    }
+
     [RelayCommand]
     private void ShowModsMenuWindow()
     {
@@ -37,5 +44,30 @@ public partial class MainViewModel : ViewModelBase
     {
         NewChart newChartWin = new NewChart();
         newChartWin.Show();
+    }
+
+    // TODO: Create an event system that isn't as tightly coupled
+    [RelayCommand]
+    private void IncrementQuantization()
+    {
+        EditorManager.IncrementQuantization();
+    }
+
+    [RelayCommand]
+    private void DecrementQuantization()
+    {
+        EditorManager.DecrementQuantization();
+    }
+
+    [RelayCommand]
+    private void TraverseRowForward()
+    {
+        EditorManager.TraverseRowForward();
+    }
+
+    [RelayCommand]
+    private void TraverseRowBackward()
+    {
+        EditorManager.TraverseRowBackward();
     }
 }

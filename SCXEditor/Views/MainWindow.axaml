@@ -9,4 +9,10 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="SCXEditor">
         <views:MainView />
+	<Window.KeyBindings>
+		<KeyBinding Gesture="A" Command="{Binding DecrementQuantizationCommand}"/>
+		<KeyBinding Gesture="D" Command="{Binding IncrementQuantizationCommand}"/>
+		<KeyBinding Gesture="W" Command="{Binding TraverseRowForwardCommand}"/>
+		<KeyBinding Gesture="S" Command="{Binding TraverseRowBackwardCommand}"/>
+	</Window.KeyBindings>
 </Window>
