@@ -1,9 +1,11 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-
 using SCXEditor.ViewModels;
 using SCXEditor.Views;
+using SCXEditor.Services;
+using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SCXEditor;
 
@@ -18,19 +20,25 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
+            desktop.MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel()
             };
-        }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
-        {
-            singleViewPlatform.MainView = new MainView
-            {
-                DataContext = new MainViewModel()
-            };
+
+            var services = new ServiceCollection();
+
+            services.AddSingleton<IFileService>(x => new FileService(desktop.MainWindow));
+
+            Services = services.BuildServiceProvider();
         }
 
         base.OnFrameworkInitializationCompleted();
     }
+
+    public new static App? Current => Application.Current as App;
+
+    /// <summary>
+    /// Gets the <see cref="IServiceProvider"/> instance to resolve application services.
+    /// </summary>
+    public IServiceProvider? Services { get; private set; }
 }

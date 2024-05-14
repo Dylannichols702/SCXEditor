@@ -9,6 +9,10 @@ using SCXEditor.Views;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
+using SCXEditor.Services;
+using System.Threading;
+using Avalonia.Platform.Storage;
 
 namespace SCXEditor.ViewModels
 {
@@ -22,16 +26,15 @@ namespace SCXEditor.ViewModels
         }
 
         [RelayCommand]
-        private async Task ChangeChartDirectory()
+        private async Task ChangeChartDirectory(CancellationToken token)
         {
-            // TODO: This method is jank and deprecated, fix it later.
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.AllowMultiple = false;
-            FileDialogFilter filter = new FileDialogFilter();
-            filter.Extensions.Add("xdrv");
-            ofd.Filters.Add(filter);
-            string[]? input = await ofd.ShowAsync(new MainWindow());
-            ChartDirectory = input == null ? null : input[0];
+            var fileService = App.Current?.Services?.GetService<IFileService>();
+            if (fileService is null) throw new NullReferenceException("Missing File Service instance.");
+
+            var file = await fileService.OpenFileAsync(new[] { FileService.XDRV });
+            if (file is null) return;
+
+            ChartDirectory = file.Path.LocalPath;
         }
 
         [RelayCommand]

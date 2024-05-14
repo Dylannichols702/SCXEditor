@@ -12,6 +12,9 @@ using System.IO;
 using SCXEditor.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
+using SCXEditor.Services;
+using Avalonia.Platform.Storage;
 
 namespace SCXEditor.ViewModels
 {
@@ -31,24 +34,25 @@ namespace SCXEditor.ViewModels
         [RelayCommand]
         private async Task ChangeChartDirectory()
         {
-            // TODO: This method is jank and deprecated, fix it later.
-            OpenFolderDialog ofd = new OpenFolderDialog();
-            ChartSetDirectory = await ofd.ShowAsync(new MainWindow());
+            var fileService = App.Current?.Services?.GetService<IFileService>();
+            if (fileService is null) throw new NullReferenceException("Missing File Service instance.");
+
+            var folder = await fileService.OpenFolderAsync();
+            if (folder is null) return;
+
+            ChartSetDirectory = folder.Path.LocalPath;
         }
 
         [RelayCommand]
         private async Task ChangeAudioFileName()
         {
-            // TODO: This method is jank and deprecated, fix it later.
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.AllowMultiple = false;
-            FileDialogFilter filter = new FileDialogFilter();
-            filter.Extensions.Add("mp3"); 
-            filter.Extensions.Add("ogg");
-            filter.Extensions.Add("wav");
-            ofd.Filters.Add(filter);
-            string[]? input = await ofd.ShowAsync(new MainWindow());
-            AudioFileName = input == null ? null : Path.GetFileName(input[0]);
+            var fileService = App.Current?.Services?.GetService<IFileService>();
+            if (fileService is null) throw new NullReferenceException("Missing File Service instance.");
+
+            var file = await fileService.OpenFileAsync(new[] { FileService.AudioFiles });
+            if (file is null) return;
+
+            AudioFileName = file.Path.LocalPath;
         }
 
         [RelayCommand]

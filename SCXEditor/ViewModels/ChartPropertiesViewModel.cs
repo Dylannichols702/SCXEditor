@@ -11,6 +11,9 @@ using System.IO;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
+using SCXEditor.Services;
+using Avalonia.Platform.Storage;
 
 namespace SCXEditor.ViewModels
 {
@@ -41,15 +44,13 @@ namespace SCXEditor.ViewModels
         [RelayCommand]
         private async Task ChangeSelectedJacket()
         {
-            // TODO: This method is jank and deprecated, fix it later.
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.AllowMultiple = false;
-            FileDialogFilter filter = new FileDialogFilter();
-            filter.Extensions.Add("jpg");
-            filter.Extensions.Add("png");
-            ofd.Filters.Add(filter);
-            string[]? input = await ofd.ShowAsync(new MainWindow());
-            SelectedJacket = input == null ? null : Path.GetFileName(input[0]);
+            var fileService = App.Current?.Services?.GetService<IFileService>();
+            if (fileService is null) throw new NullReferenceException("Missing File Service instance.");
+
+            var file = await fileService.OpenFileAsync(new[] { FilePickerFileTypes.ImageAll });
+            if (file is null) return;
+
+            SelectedJacket = file.Path.LocalPath;
         }
 
         [RelayCommand]
