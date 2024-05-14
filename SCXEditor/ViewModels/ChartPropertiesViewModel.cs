@@ -16,9 +16,9 @@ namespace SCXEditor.ViewModels
 {
     public partial class ChartPropertiesViewModel : ViewModelBase
     {
-        public ChartPropertiesViewModel() { }
+        const int VOLUME_CONVERSION_FACTOR = 100;
 
-        [ObservableProperty] private static XDRV? activeChart;
+        private static XDRV? activeChart;
         [ObservableProperty] private string? chartAuthor;
         [ObservableProperty] private Array? difficulties;
         [ObservableProperty] private XDRVDifficulty selectedDifficulty;
@@ -32,6 +32,11 @@ namespace SCXEditor.ViewModels
         [ObservableProperty] private float offset;
         [ObservableProperty] private string? jacketIllustrator;
         [ObservableProperty] private string? selectedJacket;
+
+        public ChartPropertiesViewModel()
+        {
+            UpdateProps();
+        }
 
         [RelayCommand]
         private async Task ChangeSelectedJacket()
@@ -50,32 +55,50 @@ namespace SCXEditor.ViewModels
         [RelayCommand]
         private void SaveChartProperties()
         {
-            if (ActiveChart != null)
+            if (activeChart != null)
             {
                 // Update the chart file name if the difficulty has changed
-                if (ActiveChart.chartMetadata.ChartDifficulty != SelectedDifficulty)
+                if (activeChart.chartMetadata.ChartDifficulty != SelectedDifficulty)
                 {
                     string newChartPath = ChartSetManager._ActiveChartSet + "/" + SelectedDifficulty.ToString().ToUpper() + ".xdrv";
-                    File.Copy(ActiveChart.filePath, newChartPath);
-                    File.Delete(ActiveChart.filePath);
-                    ActiveChart.filePath = newChartPath;
+                    File.Copy(activeChart.filePath, newChartPath);
+                    File.Delete(activeChart.filePath);
+                    activeChart.filePath = newChartPath;
                 }
 
-                ActiveChart.chartMetadata.ChartAuthor = ChartAuthor;
-                ActiveChart.chartMetadata.ChartDifficulty = SelectedDifficulty;
-                ActiveChart.chartMetadata.ChartLevel = ChartLevel;
-                ActiveChart.chartMetadata.MusicPreviewStart = MusicPreviewStart;
-                ActiveChart.chartMetadata.MusicPreviewLength = MusicPreviewLength;
-                ActiveChart.chartMetadata.ChartDisplayBPM = DisplayBPM;
-                ActiveChart.chartMetadata.ChartBPM = TrueBPM;
-                ActiveChart.chartMetadata.RpcHidden = IsHideRPC;
-                ActiveChart.chartMetadata.MusicVolume = Volume;
-                ActiveChart.chartMetadata.MusicOffset = Offset;
-                ActiveChart.chartMetadata.JacketImage = SelectedJacket;
-                ActiveChart.chartMetadata.JacketIllustrator = JacketIllustrator;
+                activeChart.chartMetadata.ChartAuthor = ChartAuthor;
+                activeChart.chartMetadata.ChartDifficulty = SelectedDifficulty;
+                activeChart.chartMetadata.ChartLevel = ChartLevel;
+                activeChart.chartMetadata.MusicPreviewStart = MusicPreviewStart;
+                activeChart.chartMetadata.MusicPreviewLength = MusicPreviewLength;
+                activeChart.chartMetadata.ChartDisplayBPM = DisplayBPM;
+                activeChart.chartMetadata.ChartBPM = TrueBPM;
+                activeChart.chartMetadata.RpcHidden = IsHideRPC;
+                activeChart.chartMetadata.MusicVolume = ((float)Volume)/VOLUME_CONVERSION_FACTOR;
+                activeChart.chartMetadata.MusicOffset = Offset;
+                activeChart.chartMetadata.JacketImage = SelectedJacket;
+                activeChart.chartMetadata.JacketIllustrator = JacketIllustrator;
 
-                ActiveChart.Serialize();
+                activeChart.Serialize();
             }
+        }
+
+        private void UpdateProps()
+        {
+            activeChart = ChartManager._ActiveChart;
+            ChartAuthor = activeChart != null ? activeChart.chartMetadata.ChartAuthor : null;
+            Difficulties = Enum.GetValues(typeof(XDRVDifficulty));
+            SelectedDifficulty = activeChart != null ? activeChart.chartMetadata.ChartDifficulty : XDRVDifficulty.Beginner;
+            ChartLevel = activeChart != null ? activeChart.chartMetadata.ChartLevel : 1;
+            MusicPreviewStart = activeChart != null ? activeChart.chartMetadata.MusicPreviewStart : 0.00f;
+            MusicPreviewLength = activeChart != null ? activeChart.chartMetadata.MusicPreviewLength : 0.00f;
+            DisplayBPM = activeChart != null ? activeChart.chartMetadata.ChartDisplayBPM : 150;
+            TrueBPM = activeChart != null ? activeChart.chartMetadata.ChartBPM : 150.00f;
+            IsHideRPC = activeChart != null ? activeChart.chartMetadata.RpcHidden : false;
+            Volume = activeChart != null ? (int)(activeChart.chartMetadata.MusicVolume * VOLUME_CONVERSION_FACTOR) : 100;
+            Offset = activeChart != null ? activeChart.chartMetadata.MusicOffset : 0.00f;
+            JacketIllustrator = activeChart != null ? activeChart.chartMetadata.JacketIllustrator : null;
+            SelectedJacket = activeChart != null ? activeChart.chartMetadata.JacketImage : null;
         }
     }
 }

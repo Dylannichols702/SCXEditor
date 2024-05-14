@@ -14,7 +14,6 @@ namespace SCXEditor.ViewModels
 {
     public partial class LoadChartViewModel : ViewModelBase
     {
-        [ObservableProperty] private string? selectedChart;
         [ObservableProperty] private string? chartDirectory;
 
         public LoadChartViewModel()
