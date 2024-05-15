@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame;
 
-namespace ChartRenderer;
+namespace SCXEditor.ChartRenderer;
 
 public class ChartRenderer : Game
 {
@@ -12,7 +13,7 @@ public class ChartRenderer : Game
     public ChartRenderer()
     {
         _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
+        Content.RootDirectory = "ChartRenderer/Content";
         IsMouseVisible = true;
     }
 
@@ -32,9 +33,6 @@ public class ChartRenderer : Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // TODO: Add your update logic here
 
         base.Update(gameTime);
@@ -42,9 +40,11 @@ public class ChartRenderer : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Lavender);
+        GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
 
         // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }

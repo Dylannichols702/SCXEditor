@@ -5,14 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using SCXEditor.Models;
-using SCXEditor.Views;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 using SCXEditor.Services;
 using System.Threading;
-using Avalonia.Platform.Storage;
 
 namespace SCXEditor.ViewModels
 {

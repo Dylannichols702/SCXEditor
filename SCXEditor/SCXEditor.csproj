@@ -20,5 +20,10 @@
     <PackageReference Include="AvaloniaInside.MonoGame" Version="1.0.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="MonoGame.Primitives2D" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ChartRenderer\Content\" />
   </ItemGroup>
 </Project>
