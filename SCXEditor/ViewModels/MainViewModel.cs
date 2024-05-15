@@ -11,7 +11,7 @@ using Avalonia.Input;
 
 public partial class MainViewModel : ViewModelBase
 {
-    public MainViewModel ()
+    public MainViewModel()
     {
 
     }
@@ -69,5 +69,17 @@ public partial class MainViewModel : ViewModelBase
     private void TraverseRowBackward()
     {
         EditorManager.TraverseRowBackward();
+    }
+
+    [RelayCommand]
+    private void PlaceNote(int column)
+    {
+        EditorManager.PlaceNote(column);
+    }
+
+    [RelayCommand]
+    private void SaveChart()
+    {
+        ChartManager._ActiveChart?.Serialize();
     }
 }

@@ -16,7 +16,6 @@
 			<MenuItem Header="File">
 				<MenuItem Header="New Chart" Command="{Binding ShowNewChartWindowCommand}"/>
 				<MenuItem Header="Load Chart" Command="{Binding ShowLoadChartWindowCommand}"/>
-				<MenuItem Header="Save"/>
 			</MenuItem>
 			<MenuItem Header="Edit">
 				<MenuItem Header="Chart Properties" Command="{Binding ShowChartPropertiesWindowCommand}"/>

@@ -4,15 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:SCXEditor.Views"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="SCXEditor.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="SCXEditor">
         <views:MainView />
 	<Window.KeyBindings>
+		<KeyBinding Gesture="Ctrl+S" Command="{Binding SaveChartCommand}"/>
 		<KeyBinding Gesture="A" Command="{Binding DecrementQuantizationCommand}"/>
 		<KeyBinding Gesture="D" Command="{Binding IncrementQuantizationCommand}"/>
 		<KeyBinding Gesture="W" Command="{Binding TraverseRowForwardCommand}"/>
 		<KeyBinding Gesture="S" Command="{Binding TraverseRowBackwardCommand}"/>
+		<KeyBinding Gesture="T" Command="{Binding PlaceNoteCommand}">
+			<KeyBinding.CommandParameter>
+					<sys:Int32>0</sys:Int32>
+			</KeyBinding.CommandParameter>
+		</KeyBinding>
+		<KeyBinding Gesture="Y" Command="{Binding PlaceNoteCommand}">
+			<KeyBinding.CommandParameter>
+				<sys:Int32>1</sys:Int32>
+			</KeyBinding.CommandParameter>
+		</KeyBinding>
+		<KeyBinding Gesture="U" Command="{Binding PlaceNoteCommand}">
+			<KeyBinding.CommandParameter>
+				<sys:Int32>2</sys:Int32>
+			</KeyBinding.CommandParameter>
+		</KeyBinding>
+		<KeyBinding Gesture="I" Command="{Binding PlaceNoteCommand}">
+			<KeyBinding.CommandParameter>
+				<sys:Int32>3</sys:Int32>
+			</KeyBinding.CommandParameter>
+		</KeyBinding>
+		<KeyBinding Gesture="O" Command="{Binding PlaceNoteCommand}">
+			<KeyBinding.CommandParameter>
+				<sys:Int32>4</sys:Int32>
+			</KeyBinding.CommandParameter>
+		</KeyBinding>
+		<KeyBinding Gesture="P" Command="{Binding PlaceNoteCommand}">
+			<KeyBinding.CommandParameter>
+				<sys:Int32>5</sys:Int32>
+			</KeyBinding.CommandParameter>
+		</KeyBinding>
 	</Window.KeyBindings>
 </Window>

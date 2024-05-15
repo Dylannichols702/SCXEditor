@@ -10,8 +10,10 @@ namespace SCXEditor.Models
 {
     public partial class EditorManager : ObservableObject
     {
+        public const int BLANK_VALUE = 0;
+        public const int TAP_NOTE_VALUE = 1;
         public const int MAX_QUANTIZATION = 48;
-        public static readonly int[] Quantizations = new int[] { 48, 24, 16, 12, 8, 6, 4, 3, 2, 1 };
+        public static readonly int[] Quantizations = new int[] { 48, 24, 16, 12, 8, 6, 4, 3, 1 };
         
         [ObservableProperty] private static int selectedAbsoluteRow = 0;
 
@@ -49,6 +51,32 @@ namespace SCXEditor.Models
         {
             selectedBeat = selectedAbsoluteRow / MAX_QUANTIZATION;
             selectedRow = selectedAbsoluteRow % MAX_QUANTIZATION;
+        }
+
+        internal static void PlaceNote(int column)
+        {
+            int numBeatsGenerated = ChartManager._ActiveChart?.chartBody.Beats.Count ?? 0;
+
+            if (selectedBeat >= numBeatsGenerated)
+            {
+                for (int i = numBeatsGenerated; i <= selectedBeat; i++)
+                {
+                    ChartManager._ActiveChart?.chartBody.Beats.Add(new XDRVChartBeat());
+                }
+            }
+
+            XDRVChartBeat beat = ChartManager._ActiveChart?.chartBody.Beats[selectedBeat] ?? new XDRVChartBeat();
+
+            if (beat.Rows[selectedRow].Notes[column] == 0)
+            {
+                beat.Rows[selectedRow].Notes[column] = TAP_NOTE_VALUE;
+            }
+            else
+            {
+                beat.Rows[selectedRow].Notes[column] = BLANK_VALUE;
+            }
+
+            ChartManager._ActiveChart?.chartBody.Beats[selectedBeat].SetData(beat.Rows.ToList());
         }
     }
 }
