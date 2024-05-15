@@ -8,9 +8,15 @@ using CommunityToolkit.Mvvm;
 using CommunityToolkit.Mvvm.Input;
 using Avalonia.Controls;
 using Avalonia.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ChartRenderer;
 
 public partial class MainViewModel : ViewModelBase
+
 {
+    [ObservableProperty] Game game = new ChartRenderer();
     public MainViewModel()
     {
 
