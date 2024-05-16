@@ -7,7 +7,8 @@
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="SCXEditor.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="SCXEditor">
+        Title="SCXEditor"
+		CanResize="False">
         <views:MainView />
 	<Window.KeyBindings>
 		<KeyBinding Gesture="Ctrl+S" Command="{Binding SaveChartCommand}"/>
