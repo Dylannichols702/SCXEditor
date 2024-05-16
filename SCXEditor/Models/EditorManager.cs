@@ -17,28 +17,49 @@ namespace SCXEditor.Models
         
         [ObservableProperty] private static int selectedAbsoluteRow = 0;
 
-        private static int selectedQuantization = 0;
-        private static int selectedBeat = 0;
-        private static int selectedRow = 0;
+        private int selectedQuantization = 0;
+        private int selectedBeat = 0;
+        private int selectedRow = 0;
 
-        public static void IncrementQuantization()
+        private static EditorManager? _instance;
+        public static EditorManager Instance
+        {
+            get
+            {
+                if (_instance == null) return new EditorManager();
+                return _instance;
+            }
+        }
+
+        public EditorManager()
+        {
+            _instance = this;
+            InputManager.Instance.OnWKeyPressed += TraverseRowForward;
+            InputManager.Instance.OnAKeyPressed += DecrementQuantization;
+            InputManager.Instance.OnSKeyPressed += TraverseRowBackward;
+            InputManager.Instance.OnDKeyPressed += IncrementQuantization;
+            InputManager.Instance.OnNoteKeyPressed += PlaceNote;
+            InputManager.Instance.OnSaveHotkeyPressed += SaveChart;
+        }
+
+        public void IncrementQuantization(object sender, EventArgs args)
         {
             if (selectedQuantization < Quantizations.Length) selectedQuantization++;
         }
 
-        public static void DecrementQuantization()
+        public void DecrementQuantization(object sender, EventArgs args)
         {
             if (selectedQuantization > 0) selectedQuantization--;
         }
 
         // TODO: you might be able to make this whole thing more compact, idrk :/
-        public static void TraverseRowForward()
+        public void TraverseRowForward(object sender, EventArgs args)
         {
             selectedAbsoluteRow += Quantizations[selectedQuantization];
             UpdateRowSelection();
         }
 
-        public static void TraverseRowBackward()
+        public void TraverseRowBackward(object sender, EventArgs args)
         {
             if (selectedAbsoluteRow - Quantizations[selectedQuantization] >= 0)
             {
@@ -47,13 +68,13 @@ namespace SCXEditor.Models
             }
         }
 
-        private static void UpdateRowSelection()
+        private void UpdateRowSelection()
         {
             selectedBeat = selectedAbsoluteRow / MAX_QUANTIZATION;
             selectedRow = selectedAbsoluteRow % MAX_QUANTIZATION;
         }
 
-        internal static void PlaceNote(int column)
+        public void PlaceNote(object sender, InputManager.OnNoteKeyPressedEventArgs args)
         {
             int numBeatsGenerated = ChartManager._ActiveChart?.chartBody.Beats.Count ?? 0;
 
@@ -67,16 +88,21 @@ namespace SCXEditor.Models
 
             XDRVChartBeat beat = ChartManager._ActiveChart?.chartBody.Beats[selectedBeat] ?? new XDRVChartBeat();
 
-            if (beat.Rows[selectedRow].Notes[column] == 0)
+            if (beat.Rows[selectedRow].Notes[args.column] == 0)
             {
-                beat.Rows[selectedRow].Notes[column] = TAP_NOTE_VALUE;
+                beat.Rows[selectedRow].Notes[args.column] = TAP_NOTE_VALUE;
             }
             else
             {
-                beat.Rows[selectedRow].Notes[column] = BLANK_VALUE;
+                beat.Rows[selectedRow].Notes[args.column] = BLANK_VALUE;
             }
 
             ChartManager._ActiveChart?.chartBody.Beats[selectedBeat].SetData(beat.Rows.ToList());
+        }
+
+        public void SaveChart(object sender, EventArgs args)
+        {
+            ChartManager._ActiveChart?.Serialize();
         }
     }
 }

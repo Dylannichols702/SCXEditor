@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ChartRenderer;
+using System.Data.Common;
 
 public partial class MainViewModel : ViewModelBase
 
@@ -19,7 +20,8 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty] Game game = new ChartRenderer();
     public MainViewModel()
     {
-
+        // Wake necessary singletons (yowza)
+        EditorManager editorManager = EditorManager.Instance;
     }
 
     [RelayCommand]
@@ -56,36 +58,36 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     private void IncrementQuantization()
     {
-        EditorManager.IncrementQuantization();
+        InputManager.Instance.DKeyPressed();
     }
 
     [RelayCommand]
     private void DecrementQuantization()
     {
-        EditorManager.DecrementQuantization();
+        InputManager.Instance.AKeyPressed();
     }
 
     [RelayCommand]
     private void TraverseRowForward()
     {
-        EditorManager.TraverseRowForward();
+        InputManager.Instance.WKeyPressed();
     }
 
     [RelayCommand]
     private void TraverseRowBackward()
     {
-        EditorManager.TraverseRowBackward();
+        InputManager.Instance.SKeyPressed();
     }
 
     [RelayCommand]
     private void PlaceNote(int column)
     {
-        EditorManager.PlaceNote(column);
+        InputManager.Instance.NoteKeyPressed(column);
     }
 
     [RelayCommand]
     private void SaveChart()
     {
-        ChartManager._ActiveChart?.Serialize();
+        InputManager.Instance.SaveHotkeyPressed();
     }
 }
