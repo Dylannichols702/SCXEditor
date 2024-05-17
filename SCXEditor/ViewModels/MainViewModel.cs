@@ -54,7 +54,6 @@ public partial class MainViewModel : ViewModelBase
         newChartWin.Show();
     }
 
-    // TODO: Create an event system that isn't as tightly coupled
     [RelayCommand]
     private void IncrementQuantization()
     {

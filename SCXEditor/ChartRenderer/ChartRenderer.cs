@@ -10,10 +10,8 @@ namespace SCXEditor.ChartRenderer;
 
 public class ChartRenderer : Game
 {
+    private SpriteFont _defaultFont;
     private List<RendererElement> _elements = new List<RendererElement>();
-
-    private RendererElements.Track _leftTrack = new(450, 0, 200, 1000);
-    private RendererElements.Track _rightTrack = new(700, 0, 200, 1000);
 
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
@@ -27,9 +25,6 @@ public class ChartRenderer : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-        _elements.Add(_leftTrack);
-        _elements.Add(_rightTrack);
         base.Initialize();
     }
 
@@ -37,13 +32,23 @@ public class ChartRenderer : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        // Load Font
+        _defaultFont = Content.Load<SpriteFont>("Fonts/DefaultFont");
+
+        // Initialize RenderElements
+        RendererElements.Track _leftTrack = new(450, 0, 200, 1000);
+        RendererElements.Track _rightTrack = new(700, 0, 200, 1000);
+        JudgmentLine _judgmentLine = new(400, 500, 550, 10);
+
+        // Add RenderElements to the list
+        _elements.Add(_leftTrack);
+        _elements.Add(_rightTrack);
+        _elements.Add(_judgmentLine);
     }
 
     protected override void Update(GameTime gameTime)
     {
         // TODO: Add your update logic here
-
         base.Update(gameTime);
     }
 
@@ -51,7 +56,6 @@ public class ChartRenderer : Game
     {
         GraphicsDevice.Clear(new Microsoft.Xna.Framework.Color(96, 77, 128));
 
-        // TODO: Add your drawing code here
         _spriteBatch.Begin();
         foreach (RendererElement element in _elements)
         {

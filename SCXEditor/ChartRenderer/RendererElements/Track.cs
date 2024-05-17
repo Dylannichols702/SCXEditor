@@ -7,19 +7,8 @@ namespace SCXEditor.ChartRenderer.RendererElements
     public class Track : RendererElement
     {
         private Rectangle rect = new Rectangle();
-        Microsoft.Xna.Framework.Color color;
-
-        public int X
-        {
-            get { return rect.X; }
-            set { rect.X = value; }
-        }
-
-        public int Y
-        {
-            get { return rect.Y; }
-            set { rect.Y = value; }
-        }
+        Microsoft.Xna.Framework.Color backgroundColor;
+        Microsoft.Xna.Framework.Color lineColor;
 
         public Track(int x, int y, int width, int height)
         {
@@ -27,12 +16,24 @@ namespace SCXEditor.ChartRenderer.RendererElements
             rect.Y = y;
             rect.Width = width;
             rect.Height = height;
-            color = new Microsoft.Xna.Framework.Color(0, 0, 0);
+            backgroundColor = new(0, 0, 0);
+            lineColor = new(100, 100, 100);
         }
 
         public void Draw(ref SpriteBatch spriteBatch)
         {
-            spriteBatch.FillRectangle(rect, color);
+            // Draw background
+            spriteBatch.FillRectangle(rect, backgroundColor);
+
+            // Draw separating lines
+            spriteBatch.DrawLine(
+                new Vector2(rect.X + rect.Width / 3, 0), 
+                new Vector2(rect.X + rect.Width / 3, rect.Height), 
+                lineColor);
+            spriteBatch.DrawLine(
+                new Vector2(rect.X + (2 * rect.Width / 3), 0),
+                new Vector2(rect.X + (2 * rect.Width / 3), rect.Height),
+                lineColor);
         }
     }
 }
