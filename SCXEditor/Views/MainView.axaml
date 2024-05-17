@@ -25,6 +25,6 @@
 				<MenuItem Header="Mods Menu" Command="{Binding ShowModsMenuWindowCommand}"/>
 			</MenuItem>
 		</Menu>
-		<monoGame:MonoGameControl Game="{Binding Game}"/>
+		<Image Source="{Binding RenderTarget}"/>
 	</DockPanel>
 </UserControl>

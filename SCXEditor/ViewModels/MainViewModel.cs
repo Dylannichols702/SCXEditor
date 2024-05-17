@@ -9,15 +9,18 @@ using CommunityToolkit.Mvvm.Input;
 using Avalonia.Controls;
 using Avalonia.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ChartRenderer;
 using System.Data.Common;
+using Avalonia.Media.Imaging;
+using Avalonia;
+using Avalonia.Platform;
+using SkiaSharp;
+using Avalonia.Skia;
+using Avalonia.Media;
 
 public partial class MainViewModel : ViewModelBase
 
 {
-    [ObservableProperty] Game game = new ChartRenderer();
+    public RenderTargetBitmap RenderTarget { get; }
     public MainViewModel()
     {
         // Wake necessary singletons (yowza)
