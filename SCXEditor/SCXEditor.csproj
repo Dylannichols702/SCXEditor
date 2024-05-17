@@ -10,18 +10,6 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
-  
-  <ItemGroup>
-    <None Remove="ChartRenderer\Content\Fonts\DefaultFont.xnb" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <Content Include="ChartRenderer\Content\Fonts\DefaultFont.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Skia" Version="11.0.2" />
