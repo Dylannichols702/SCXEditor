@@ -10,18 +10,6 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
-  
-  <ItemGroup>
-    <None Remove="ChartRenderer\Content\Fonts\DefaultFont.xnb" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <Content Include="ChartRenderer\Content\Fonts\DefaultFont.xnb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
@@ -29,9 +17,7 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="AvaloniaInside.MonoGame" Version="1.0.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="MonoGame.Primitives2D" Version="1.1.1" />
   </ItemGroup>
 </Project>
