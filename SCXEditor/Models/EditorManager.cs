@@ -12,6 +12,8 @@ namespace SCXEditor.Models
     {
         public const int BLANK_VALUE = 0;
         public const int TAP_NOTE_VALUE = 1;
+        public const int HOLD_START_VALUE = 2;
+        public const int HOLD_END_VALUE = 4;
         public const int MAX_QUANTIZATION = 48;
         public static readonly int[] Quantizations = new int[] { 48, 24, 16, 12, 8, 6, 4, 3, 1 };
         
@@ -38,8 +40,9 @@ namespace SCXEditor.Models
             InputManager.Instance.OnAKeyPressed += DecrementQuantization;
             InputManager.Instance.OnSKeyPressed += TraverseRowBackward;
             InputManager.Instance.OnDKeyPressed += IncrementQuantization;
-            InputManager.Instance.OnNoteKeyPressed += PlaceNote;
+            InputManager.Instance.OnTapNoteKeyPressed += PlaceTapNote;
             InputManager.Instance.OnSaveHotkeyPressed += SaveChart;
+            InputManager.Instance.OnHoldNoteKeyPressed += PlaceHoldNote;
         }
 
         public void IncrementQuantization(object sender, EventArgs args)
@@ -74,21 +77,12 @@ namespace SCXEditor.Models
             selectedRow = selectedAbsoluteRow % MAX_QUANTIZATION;
         }
 
-        public void PlaceNote(object sender, InputManager.OnNoteKeyPressedEventArgs args)
+        public void PlaceTapNote(object sender, InputManager.OnNoteKeyPressedEventArgs args)
         {
-            int numBeatsGenerated = ChartManager._ActiveChart?.chartBody.Beats.Count ?? 0;
-
-            if (selectedBeat >= numBeatsGenerated)
-            {
-                for (int i = numBeatsGenerated; i <= selectedBeat; i++)
-                {
-                    ChartManager._ActiveChart?.chartBody.Beats.Add(new XDRVChartBeat());
-                }
-            }
-
+            ExtendChartIfNecessary(selectedBeat);
             XDRVChartBeat beat = ChartManager._ActiveChart?.chartBody.Beats[selectedBeat] ?? new XDRVChartBeat();
 
-            if (beat.Rows[selectedRow].Notes[args.column] == 0)
+            if (beat.Rows[selectedRow].Notes[args.column] == BLANK_VALUE)
             {
                 beat.Rows[selectedRow].Notes[args.column] = TAP_NOTE_VALUE;
             }
@@ -100,9 +94,50 @@ namespace SCXEditor.Models
             ChartManager._ActiveChart?.chartBody.Beats[selectedBeat].SetData(beat.Rows.ToList());
         }
 
+        // Attempt to create a hold note with the last tap note in the appropriate column
+        public void PlaceHoldNote(object sender, InputManager.OnNoteKeyPressedEventArgs args)
+        {
+            List<XDRVChartBeat>? beats = ChartManager._ActiveChart?.chartBody.Beats;
+            ExtendChartIfNecessary(selectedBeat);
+
+            if (beats != null)
+            {
+                for (int j = selectedAbsoluteRow; j >= 0; j--)
+                {
+                    int currentBeat = j / MAX_QUANTIZATION;
+                    int currentRow = j % MAX_QUANTIZATION;
+                    int currentNote = beats[currentBeat].Rows[currentRow].Notes[args.column];
+                    if (currentNote == TAP_NOTE_VALUE) 
+                    {
+                        beats[currentBeat].Rows[currentRow].Notes[args.column] = HOLD_START_VALUE;
+                        beats[selectedBeat].Rows[selectedRow].Notes[args.column] = HOLD_END_VALUE;
+                        break;
+                    } else if (currentNote != BLANK_VALUE)
+                    {
+                        // Break the sequence if there is another type of note in the way
+                        break;
+                    }
+                }
+            }
+        }
+
         public void SaveChart(object sender, EventArgs args)
         {
             ChartManager._ActiveChart?.Serialize();
+        }
+
+        // Extend the chart to the desired beat
+        private void ExtendChartIfNecessary(int selectedBeat)
+        {
+            int numBeatsGenerated = ChartManager._ActiveChart?.chartBody.Beats.Count ?? 0;
+
+            if (selectedBeat >= numBeatsGenerated)
+            {
+                for (int i = numBeatsGenerated; i <= selectedBeat; i++)
+                {
+                    ChartManager._ActiveChart?.chartBody.Beats.Add(new XDRVChartBeat());
+                }
+            }
         }
     }
 }

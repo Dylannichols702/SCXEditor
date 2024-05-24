@@ -75,9 +75,15 @@ public partial class MainViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private void PlaceNote(int column)
+    private void PlaceTapNote(int column)
     {
-        InputManager.Instance.NoteKeyPressed(column);
+        InputManager.Instance.TapNoteKeyPressed(column);
+    }
+
+    [RelayCommand]
+    private void PlaceHoldNote(int column)
+    {
+        InputManager.Instance.HoldNoteKeyPressed(column);
     }
 
     [RelayCommand]

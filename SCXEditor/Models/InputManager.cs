@@ -14,7 +14,8 @@ namespace SCXEditor.Models
         public event EventHandler? OnAKeyPressed;
         public event EventHandler? OnSKeyPressed;
         public event EventHandler? OnDKeyPressed;
-        public event EventHandler<OnNoteKeyPressedEventArgs>? OnNoteKeyPressed;
+        public event EventHandler<OnNoteKeyPressedEventArgs>? OnTapNoteKeyPressed;
+        public event EventHandler<OnNoteKeyPressedEventArgs>? OnHoldNoteKeyPressed;
         public class OnNoteKeyPressedEventArgs : EventArgs
         {
             public int column;
@@ -38,7 +39,8 @@ namespace SCXEditor.Models
         public void AKeyPressed() => OnAKeyPressed?.Invoke(this, EventArgs.Empty);
         public void SKeyPressed() => OnSKeyPressed?.Invoke(this, EventArgs.Empty);
         public void DKeyPressed() => OnDKeyPressed?.Invoke(this, EventArgs.Empty);
-        public void NoteKeyPressed(int col) => OnNoteKeyPressed?.Invoke(this, new OnNoteKeyPressedEventArgs { column = col });
+        public void TapNoteKeyPressed(int col) => OnTapNoteKeyPressed?.Invoke(this, new OnNoteKeyPressedEventArgs { column = col });
+        public void HoldNoteKeyPressed(int col) => OnHoldNoteKeyPressed?.Invoke(this, new OnNoteKeyPressedEventArgs { column = col });
         public void SaveHotkeyPressed() => OnSaveHotkeyPressed?.Invoke(this, EventArgs.Empty);
     }
 }
