@@ -45,24 +45,24 @@ namespace SCXEditor.Models
             InputManager.Instance.OnHoldNoteKeyPressed += PlaceHoldNote;
         }
 
-        public void IncrementQuantization(object sender, EventArgs args)
+        public void IncrementQuantization(object? sender, EventArgs args)
         {
             if (selectedQuantization < Quantizations.Length) selectedQuantization++;
         }
 
-        public void DecrementQuantization(object sender, EventArgs args)
+        public void DecrementQuantization(object? sender, EventArgs args)
         {
             if (selectedQuantization > 0) selectedQuantization--;
         }
 
         // TODO: you might be able to make this whole thing more compact, idrk :/
-        public void TraverseRowForward(object sender, EventArgs args)
+        public void TraverseRowForward(object? sender, EventArgs args)
         {
             selectedAbsoluteRow += Quantizations[selectedQuantization];
             UpdateRowSelection();
         }
 
-        public void TraverseRowBackward(object sender, EventArgs args)
+        public void TraverseRowBackward(object? sender, EventArgs args)
         {
             if (selectedAbsoluteRow - Quantizations[selectedQuantization] >= 0)
             {
@@ -77,7 +77,7 @@ namespace SCXEditor.Models
             selectedRow = selectedAbsoluteRow % MAX_QUANTIZATION;
         }
 
-        public void PlaceTapNote(object sender, InputManager.OnNoteKeyPressedEventArgs args)
+        public void PlaceTapNote(object? sender, InputManager.OnNoteKeyPressedEventArgs args)
         {
             ExtendChartIfNecessary(selectedBeat);
             XDRVChartBeat beat = ChartManager._ActiveChart?.chartBody.Beats[selectedBeat] ?? new XDRVChartBeat();
@@ -95,7 +95,7 @@ namespace SCXEditor.Models
         }
 
         // Attempt to create a hold note with the last tap note in the appropriate column
-        public void PlaceHoldNote(object sender, InputManager.OnNoteKeyPressedEventArgs args)
+        public void PlaceHoldNote(object? sender, InputManager.OnNoteKeyPressedEventArgs args)
         {
             List<XDRVChartBeat>? beats = ChartManager._ActiveChart?.chartBody.Beats;
             ExtendChartIfNecessary(selectedBeat);
@@ -121,7 +121,7 @@ namespace SCXEditor.Models
             }
         }
 
-        public void SaveChart(object sender, EventArgs args)
+        public void SaveChart(object? sender, EventArgs args)
         {
             ChartManager._ActiveChart?.Serialize();
         }
